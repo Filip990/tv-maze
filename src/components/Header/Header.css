@@ -1,0 +1,11 @@
+.header {
+  border-bottom: 2px solid #363a4a;
+  font-weight: 500;
+  margin-bottom: 12px;
+  text-align: initial;
+}
+
+.header h1 {
+  margin: 0;
+  display: initial;
+}
