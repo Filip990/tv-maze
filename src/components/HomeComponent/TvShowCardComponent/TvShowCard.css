@@ -1,0 +1,22 @@
+.show-card {
+  border: 1px solid grey;
+  padding: 4px;
+  margin: 4px;
+}
+
+.show-card img {
+  width: 150px;
+}
+
+.show-card h4 {
+  margin: 0;
+}
+
+.short-details {
+  display: flex;
+  justify-content: space-between;
+}
+
+.short-details span {
+  font-size: 12px;
+}

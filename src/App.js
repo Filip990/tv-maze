@@ -4,8 +4,9 @@ import { Provider } from "react-redux";
 import { createStore, applyMiddleware, combineReducers } from "redux";
 import thunk from "redux-thunk";
 
-import Home from "./components/HomeComponent/HomeComponent";
 import "./App.css";
+import Home from "./components/HomeComponent/HomeComponent";
+import Header from "./components/Header/Header";
 
 import tvShowsReducer from "./components/HomeComponent/tvShowsReducer";
 
@@ -21,6 +22,7 @@ function App() {
     <div className="App">
       <Provider store={store}>
         <Router>
+          <Header />
           <Switch>
             <Route exact path="/" component={Home} />
           </Switch>
