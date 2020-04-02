@@ -1,4 +1,7 @@
 import React, { useEffect } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+import Home from "./components/HomeComponent/HomeComponent";
 
 import "./App.css";
 
@@ -14,7 +17,15 @@ function App() {
 
     fetchTvShows();
   }, []);
-  return <div className="App"></div>;
+  return (
+    <div className="App">
+      <Router>
+        <Switch>
+          <Route exact path="/" component={Home} />
+        </Switch>
+      </Router>
+    </div>
+  );
 }
 
 export default App;
