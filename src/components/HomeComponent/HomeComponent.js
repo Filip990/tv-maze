@@ -6,9 +6,13 @@ import "./HomeComponent.css";
 
 import { getAllTvShows } from "./homeActionCreator";
 
-const Home = props => {
+const Home = () => {
   const dispatch = useDispatch();
   const showsList = useSelector(state => state.allShows);
+  const filteredShows = useSelector(state => state.allShows.filteredShows);
+  const showsToDisplay = !filteredShows.length
+    ? showsList.tvShows
+    : filteredShows;
 
   useEffect(() => {
     dispatch(getAllTvShows());
@@ -16,9 +20,9 @@ const Home = props => {
 
   return (
     <div className="main-container">
-      {showsList.tvShows.map(show => {
-        return <TvShowCard key={show.id} {...show} />;
-      })}
+      {showsToDisplay.map(show => (
+        <TvShowCard key={show.id} {...show} />
+      ))}
     </div>
   );
 };
