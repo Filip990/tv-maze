@@ -10,7 +10,7 @@ const TvShowCard = props => {
       <h4>{props.name}</h4>
       <div className="short-details">
         <span>Rating: {props.rating.average || "NN"}</span>
-        <span>{props.genres.join()}</span>
+        <span>{props.genres.join(", ")}</span>
       </div>
     </div>
   );

@@ -9,12 +9,10 @@ import { getAllTvShows } from "./homeActionCreator";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const showsList = useSelector(state => state.allShows);
-  const filteredShows = useSelector(state => state.allShows.filteredShows);
-  const isLoading = useSelector(state => state.allShows.isFetching);
-  const showsToDisplay = !filteredShows.length
-    ? showsList.tvShows
-    : filteredShows;
+  const { tvShows, filteredShows, isFetching } = useSelector(
+    state => state.allShows
+  );
+  const showsToDisplay = !filteredShows.length ? tvShows : filteredShows;
 
   useEffect(() => {
     dispatch(getAllTvShows());
@@ -22,7 +20,7 @@ const Home = () => {
 
   return (
     <div className="main-container">
-      {isLoading ? (
+      {isFetching ? (
         <Spinner />
       ) : (
         showsToDisplay.map(show => <TvShowCard key={show.id} {...show} />)
