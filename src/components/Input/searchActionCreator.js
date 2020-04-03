@@ -2,7 +2,7 @@ import {
   SEARCH_TV_SHOWS_SUCCESS,
   SEARCH_TV_SHOWS_FAILURE,
   SEARCH_TV_SHOWS_REQUEST
-} from "./inputActionTypes";
+} from "./searchActionTypes";
 
 export const searchAllTvShows = searchTerm => {
   return async dispatch => {

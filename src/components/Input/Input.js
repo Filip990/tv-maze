@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { debounce } from "lodash";
 
 import "./Input.css";
-import { searchAllTvShows } from "./inputActionCreator";
+import { searchAllTvShows } from "./searchActionCreator";
 
 const Input = props => {
   const dispatch = useDispatch();

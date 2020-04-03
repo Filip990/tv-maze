@@ -7,7 +7,7 @@ import {
   SEARCH_TV_SHOWS_SUCCESS,
   SEARCH_TV_SHOWS_FAILURE,
   SEARCH_TV_SHOWS_REQUEST
-} from "../Input/inputActionTypes";
+} from "../Input/searchActionTypes";
 
 import produce from "immer";
 
