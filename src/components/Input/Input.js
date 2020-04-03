@@ -8,8 +8,8 @@ import { searchAllTvShows } from "./inputActionCreator";
 const Input = props => {
   const dispatch = useDispatch();
 
-  const debouncedFn = debounce(value => {
-    dispatch(searchAllTvShows(value));
+  const debouncedFn = debounce(val => {
+    dispatch(searchAllTvShows(val));
   }, 300);
 
   const search = event => {
