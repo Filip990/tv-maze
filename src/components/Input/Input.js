@@ -9,7 +9,9 @@ const Input = props => {
 
   const search = event => {
     const { value } = event.target;
-    dispatch(searchAllTvShows(value));
+    setTimeout(() => {
+      dispatch(searchAllTvShows(value));
+    }, 500);
   };
 
   return <input onChange={search} placeholder={props.placeholder} />;
