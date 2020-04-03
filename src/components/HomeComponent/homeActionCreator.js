@@ -1,12 +1,12 @@
 import {
   GET_ALL_TV_SHOWS_SUCCESS,
   GET_ALL_TV_SHOWS_FAILURE,
-  START_TV_SHOW_FETCHING
+  GET_ALL_TV_SHOWS_REQUEST
 } from "./homeActionTypes";
 
 export const getAllTvShows = () => {
   return async dispatch => {
-    dispatch({ type: START_TV_SHOW_FETCHING });
+    dispatch({ type: GET_ALL_TV_SHOWS_REQUEST });
     try {
       const res = await fetch("http://api.tvmaze.com/shows");
       const tvShows = await res.json();
