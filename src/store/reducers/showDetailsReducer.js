@@ -9,6 +9,7 @@ import produce from "immer";
 const initialState = {
   details: {
     name: "",
+    year: "",
     language: "",
     genres: "",
     status: "",
@@ -35,6 +36,7 @@ const showDetailsReducer = (state = initialState, action) => {
         draft.details = {
           name: action.details.name,
           language: action.details.language,
+          year: action.details.premiered,
           genres: action.details.genres.join(", "),
           status: action.details.status,
           runtime: action.details.runtime,

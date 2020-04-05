@@ -6,10 +6,12 @@ import "./Header.css";
 import Input from "../Input/Input";
 
 import { searchAllTvShows } from "../../store/actionCreators/searchActionCreator";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 const Header = () => {
   const dispatch = useDispatch();
+  const { pathname } = useLocation();
+  const disabled = pathname !== "/";
 
   const debouncedFn = debounce(val => {
     dispatch(searchAllTvShows(val));
@@ -27,7 +29,11 @@ const Header = () => {
           Home
         </NavLink>
       </div>
-      <Input onChange={search} placeholder="Search All TV Shows" />
+      <Input
+        onChange={search}
+        placeholder="Search All TV Shows"
+        disabled={disabled}
+      />
     </div>
   );
 };

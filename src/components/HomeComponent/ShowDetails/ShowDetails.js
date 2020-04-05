@@ -10,6 +10,12 @@ const ShowDetails = props => {
   const dispatch = useDispatch();
   const { id } = props.match.params;
   const { details, isFetching } = useSelector(state => state.showDetails);
+  const year =
+    details.year &&
+    details.year
+      .split("-")
+      .reverse()
+      .join("-");
 
   useEffect(() => {
     dispatch(getShowDetails(id));
@@ -24,13 +30,14 @@ const ShowDetails = props => {
         <img src={details.image} alt="" />
 
         <ul>
+          <li> Year: {year || "NN"} </li>
           <li> Rating: {details.rating || "NN"} </li>
-          <li> Runtime: {details.runtime}</li>
+          <li> Runtime: {details.runtime} </li>
           <li> Status: {details.status} </li>
-          <li>Language: {details.language} </li>
-          <li> Network: {details.network}</li>
-          <li> Country: {details.country}</li>
-          <li> Genres: {details.genres}</li>
+          <li> Language: {details.language} </li>
+          <li> Network: {details.network} </li>
+          <li> Country: {details.country} </li>
+          <li> Genres: {details.genres} </li>
         </ul>
       </div>
       <div className="summary">{details.summary}</div>
