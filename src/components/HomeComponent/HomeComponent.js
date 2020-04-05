@@ -5,7 +5,7 @@ import TvShowCard from "./TvShowCardComponent/TvShowCard";
 import Spinner from "../Spinner/Spinner";
 import "./HomeComponent.css";
 
-import { getAllTvShows } from "./homeActionCreator";
+import { getAllTvShows } from "../../store/actionCreators/homeActionCreator";
 
 const Home = () => {
   const dispatch = useDispatch();

@@ -2,7 +2,7 @@ import {
   GET_ALL_TV_SHOWS_SUCCESS,
   GET_ALL_TV_SHOWS_FAILURE,
   GET_ALL_TV_SHOWS_REQUEST
-} from "./homeActionTypes";
+} from "../actions/homeActionTypes";
 
 export const getAllTvShows = () => {
   return async dispatch => {

@@ -8,7 +8,7 @@ import "./App.css";
 import Home from "./components/HomeComponent/HomeComponent";
 import Header from "./components/Header/Header";
 
-import tvShowsReducer from "./components/HomeComponent/tvShowsReducer";
+import tvShowsReducer from "./store/reducers/tvShowsReducer";
 
 function App() {
   const store = createStore(
