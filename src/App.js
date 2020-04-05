@@ -7,13 +7,16 @@ import thunk from "redux-thunk";
 import "./App.css";
 import Home from "./components/HomeComponent/HomeComponent";
 import Header from "./components/Header/Header";
+import ShowDetails from "./components/HomeComponent/ShowDetails/ShowDetails";
 
 import tvShowsReducer from "./store/reducers/tvShowsReducer";
+import showDetailsReducer from "./store/reducers/showDetailsReducer";
 
 function App() {
   const store = createStore(
     combineReducers({
-      allShows: tvShowsReducer
+      allShows: tvShowsReducer,
+      showDetails: showDetailsReducer
     }),
     applyMiddleware(thunk)
   );
@@ -25,6 +28,7 @@ function App() {
           <Header />
           <Switch>
             <Route exact path="/" component={Home} />
+            <Route path="/show/:id" component={ShowDetails} />
           </Switch>
         </Router>
       </Provider>

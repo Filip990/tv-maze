@@ -7,7 +7,7 @@ import Input from "../Input/Input";
 
 import { searchAllTvShows } from "../../store/actionCreators/searchActionCreator";
 
-const Header = props => {
+const Header = () => {
   const dispatch = useDispatch();
 
   const debouncedFn = debounce(val => {
