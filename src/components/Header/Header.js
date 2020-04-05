@@ -5,7 +5,7 @@ import { debounce } from "lodash";
 import "./Header.css";
 import Input from "../Input/Input";
 
-import { searchAllTvShows } from "../Input/searchActionCreator";
+import { searchAllTvShows } from "../../store/actionCreators/searchActionCreator";
 
 const Header = props => {
   const dispatch = useDispatch();
