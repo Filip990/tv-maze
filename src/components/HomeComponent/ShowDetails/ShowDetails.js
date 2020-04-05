@@ -24,7 +24,7 @@ const ShowDetails = props => {
         <img src={details.image} alt="" />
 
         <ul>
-          <li> Rating: {details.rating} </li>
+          <li> Rating: {details.rating || "NN"} </li>
           <li> Runtime: {details.runtime}</li>
           <li> Status: {details.status} </li>
           <li>Language: {details.language} </li>
