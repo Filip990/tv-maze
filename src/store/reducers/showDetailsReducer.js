@@ -36,16 +36,16 @@ const showDetailsReducer = (state = initialState, action) => {
         draft.details = {
           name: action.details.name,
           language: action.details.language,
-          year: action.details.premiered.split("-").reverse().join("-"),
+          year: action.details.premiered?.split("-").reverse().join("-"),
           genres: action.details.genres.join(", "),
           status: action.details.status,
-          runtime: action.details.runtime,
+          runtime: action.details?.runtime,
           rating: action.details.rating?.average,
           network: action.details.network?.name,
           country: action.details.network?.country?.name,
           image: action.details.image?.medium,
           summary: action.details.summary?.replace(/<[^>]+>/g, ""), // strip HTML tags from the text
-          cast: action.details._embedded.cast,
+          cast: action.details._embedded?.cast,
         };
         draft.isFetching = false;
         break;
