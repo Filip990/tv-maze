@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import placeholderImg from "../../../assets/no-image-available-grid.png";
+import placeholderImg from "../../../assets/no_image.jpg";
 import "./TvShowCard.css";
 
-const TvShowCard = props => {
+const TvShowCard = (props) => {
   return (
     <Link to={`/show/${props.id}`} className="show-card">
       <img src={(props.image && props.image.medium) || placeholderImg} alt="" />

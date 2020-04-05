@@ -2,21 +2,16 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import Spinner from "../../Spinner/Spinner";
+
 import "./ShowDetails.css";
+import placeholderImg from "../../../assets/no_image.jpg";
 
 import { getShowDetails } from "../../../store/actionCreators/showDetailsActionCreators";
 
-const ShowDetails = props => {
+const ShowDetails = (props) => {
   const dispatch = useDispatch();
   const { id } = props.match.params;
-  const { details, isFetching } = useSelector(state => state.showDetails);
-  const year =
-    details.year &&
-    details.year
-      .split("-")
-      .reverse()
-      .join("-");
-
+  const { details, isFetching } = useSelector((state) => state.showDetails);
   const unknown = "NN";
 
   useEffect(() => {
@@ -29,10 +24,10 @@ const ShowDetails = props => {
     <div className="details-container">
       <h1>{details.name}</h1>
       <div className="img-container">
-        <img src={details.image} alt="" />
+        <img src={details.image || placeholderImg} alt="" />
 
         <ul>
-          <li> Year: {year || unknown} </li>
+          <li> Year: {details.year || unknown} </li>
           <li> Rating: {details.rating || unknown} </li>
           <li> Runtime: {details.runtime || unknown} </li>
           <li> Status: {details.status || unknown} </li>
