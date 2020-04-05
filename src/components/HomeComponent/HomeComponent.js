@@ -10,7 +10,7 @@ import { getAllTvShows } from "../../store/actionCreators/homeActionCreator";
 const Home = () => {
   const dispatch = useDispatch();
   const { tvShows, filteredShows, isFetching } = useSelector(
-    state => state.allShows
+    (state) => state.allShows
   );
   const showsToDisplay = !filteredShows.length ? tvShows : filteredShows;
 
@@ -23,7 +23,7 @@ const Home = () => {
       {isFetching ? (
         <Spinner />
       ) : (
-        showsToDisplay.map(show => <TvShowCard key={show.id} {...show} />)
+        showsToDisplay.map((show) => <TvShowCard key={show.id} {...show} />)
       )}
     </div>
   );

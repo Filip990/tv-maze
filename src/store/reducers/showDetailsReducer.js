@@ -1,7 +1,7 @@
 import {
   SHOW_DETAILS_REQUEST_START,
   SHOW_DETAILS_REQUEST_SUCCESS,
-  SHOW_DETAILS_REQUEST_FAILURE
+  SHOW_DETAILS_REQUEST_FAILURE,
 } from "../actions/showDetailsActionTypes";
 
 import produce from "immer";
@@ -9,6 +9,7 @@ import produce from "immer";
 const initialState = {
   details: {
     name: "",
+    year: "",
     language: "",
     genres: "",
     status: "",
@@ -18,14 +19,14 @@ const initialState = {
     country: "",
     image: "",
     summary: "",
-    cast: []
+    cast: [],
   },
   isFetching: false,
-  err: null
+  err: null,
 };
 
 const showDetailsReducer = (state = initialState, action) => {
-  return produce(state, draft => {
+  return produce(state, (draft) => {
     switch (action.type) {
       case SHOW_DETAILS_REQUEST_START:
         draft.isFetching = true;
@@ -35,15 +36,16 @@ const showDetailsReducer = (state = initialState, action) => {
         draft.details = {
           name: action.details.name,
           language: action.details.language,
+          year: action.details.premiered.split("-").reverse().join("-"),
           genres: action.details.genres.join(", "),
           status: action.details.status,
           runtime: action.details.runtime,
-          rating: action.details.rating.average,
-          network: action.details.network.name,
-          country: action.details.network.country.code,
-          image: action.details.image.medium,
-          summary: action.details.summary.replace(/<[^>]+>/g, ""), // strip HTML tags from the text
-          cast: action.details._embedded.cast
+          rating: action.details.rating?.average,
+          network: action.details.network?.name,
+          country: action.details.network?.country?.name,
+          image: action.details.image?.medium,
+          summary: action.details.summary?.replace(/<[^>]+>/g, ""), // strip HTML tags from the text
+          cast: action.details._embedded.cast,
         };
         draft.isFetching = false;
         break;
