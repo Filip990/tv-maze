@@ -17,6 +17,8 @@ const ShowDetails = props => {
       .reverse()
       .join("-");
 
+  const unknown = "NN";
+
   useEffect(() => {
     dispatch(getShowDetails(id));
   }, [dispatch, id]);
@@ -30,17 +32,17 @@ const ShowDetails = props => {
         <img src={details.image} alt="" />
 
         <ul>
-          <li> Year: {year || "NN"} </li>
-          <li> Rating: {details.rating || "NN"} </li>
-          <li> Runtime: {details.runtime} </li>
-          <li> Status: {details.status} </li>
-          <li> Language: {details.language} </li>
-          <li> Network: {details.network} </li>
-          <li> Country: {details.country} </li>
-          <li> Genres: {details.genres} </li>
+          <li> Year: {year || unknown} </li>
+          <li> Rating: {details.rating || unknown} </li>
+          <li> Runtime: {details.runtime || unknown} </li>
+          <li> Status: {details.status || unknown} </li>
+          <li> Language: {details.language || unknown} </li>
+          <li> Network: {details.network || unknown} </li>
+          <li> Country: {details.country || unknown} </li>
+          <li> Genres: {details.genres || unknown} </li>
         </ul>
       </div>
-      <div className="summary">{details.summary}</div>
+      <div className="summary">{details.summary || "No summary provided"}</div>
     </div>
   );
 };

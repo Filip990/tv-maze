@@ -42,7 +42,7 @@ const showDetailsReducer = (state = initialState, action) => {
           runtime: action.details.runtime,
           rating: action.details.rating.average,
           network: action.details.network.name,
-          country: action.details.network.country.code,
+          country: action.details.network.country.name,
           image: action.details.image.medium,
           summary: action.details.summary.replace(/<[^>]+>/g, ""), // strip HTML tags from the text
           cast: action.details._embedded.cast
