@@ -8,6 +8,7 @@ import "./ShowDetails.css";
 import placeholderImg from "../../../assets/no_image.jpg";
 
 import { getShowDetails } from "../../../store/actionCreators/showDetailsActionCreators";
+import { Link } from "react-router-dom";
 
 const ShowDetails = (props) => {
   const dispatch = useDispatch();
@@ -24,6 +25,7 @@ const ShowDetails = (props) => {
   ) : (
     <div className="details-container">
       <h1>{details.name}</h1>
+      <Link to={`/seasons/${id}`}>Show all seasons</Link>
       <div className="img-container">
         <img src={details.image || placeholderImg} alt="" />
 
