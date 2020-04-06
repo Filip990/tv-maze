@@ -14,7 +14,7 @@ const CastComponent = (props) => {
     <div className="cast-container">
       {uniqActors.map((actor) => (
         <Link to={`/person/${actor.person.id}`} key={actor.person.id}>
-          <img src={actor.person.image.medium} alt="" />
+          <img src={actor.person.image?.medium} alt="" />
           <p>
             {actor.person.name} as {actor.character.name}
           </p>
