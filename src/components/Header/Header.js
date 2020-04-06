@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { debounce } from "lodash";
 
@@ -13,16 +13,20 @@ const Header = () => {
   const { pathname } = useLocation();
   const disabled = pathname !== "/";
   const [inputValue, setInputValue] = useState("");
+  const inputEl = useRef(null);
 
-  const debouncedFn = debounce(val => {
+  useEffect(() => inputEl.current.focus(), []);
+
+  const debouncedFn = debounce((val) => {
     dispatch(searchAllTvShows(val));
   }, 300);
 
-  const search = event => {
+  const search = (event) => {
     const { value } = event.target;
     setInputValue(value);
     debouncedFn(value);
   };
+
   return (
     <div className="header">
       <div>
@@ -36,6 +40,7 @@ const Header = () => {
         placeholder="Search All TV Shows"
         disabled={disabled}
         value={inputValue}
+        elementRef={inputEl}
       />
     </div>
   );
