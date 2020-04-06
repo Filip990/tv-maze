@@ -6,3 +6,12 @@
 .cast-container img {
   width: 100px;
 }
+
+.cast-container a {
+  text-decoration: none;
+  color: black;
+}
+
+.cast-container a:hover {
+  background: #e5e5ec;
+}

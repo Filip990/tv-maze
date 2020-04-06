@@ -1,0 +1,4 @@
+.person-details-container {
+  display: flex;
+  justify-content: space-around;
+}
