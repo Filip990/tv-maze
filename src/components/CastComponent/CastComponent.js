@@ -1,6 +1,7 @@
 import React from "react";
 
 import "./CastComponent.css";
+import { Link } from "react-router-dom";
 
 const CastComponent = (props) => {
   const cast = Object.values(props);
@@ -12,10 +13,12 @@ const CastComponent = (props) => {
   return (
     <div className="cast-container">
       {uniqActors.map((actor) => (
-        <span key={actor.person.id}>
+        <Link to={`/person/${actor.person.id}`} key={actor.person.id}>
           <img src={actor.person.image.medium} alt="" />
-          <p>{actor.person.name}</p>
-        </span>
+          <p>
+            {actor.person.name} as {actor.character.name}
+          </p>
+        </Link>
       ))}
     </div>
   );

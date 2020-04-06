@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import Spinner from "../../Spinner/Spinner";
-import CastComponent from "./CastComponent/CastComponent";
+import CastComponent from "../../CastComponent/CastComponent";
 
 import "./ShowDetails.css";
 import placeholderImg from "../../../assets/no_image.jpg";

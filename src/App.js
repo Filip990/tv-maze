@@ -8,6 +8,7 @@ import "./App.css";
 import Home from "./components/HomeComponent/HomeComponent";
 import Header from "./components/Header/Header";
 import ShowDetails from "./components/HomeComponent/ShowDetails/ShowDetails";
+import CastMember from "./components/CastMember/CastMember";
 
 import tvShowsReducer from "./store/reducers/tvShowsReducer";
 import showDetailsReducer from "./store/reducers/showDetailsReducer";
@@ -16,7 +17,7 @@ function App() {
   const store = createStore(
     combineReducers({
       allShows: tvShowsReducer,
-      showDetails: showDetailsReducer
+      showDetails: showDetailsReducer,
     }),
     applyMiddleware(thunk)
   );
@@ -29,6 +30,7 @@ function App() {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/show/:id" component={ShowDetails} />
+            <Route path="/person/:id" component={CastMember} />
           </Switch>
         </Router>
       </Provider>
