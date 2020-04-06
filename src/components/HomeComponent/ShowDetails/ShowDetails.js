@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import Spinner from "../../Spinner/Spinner";
+import CastComponent from "./CastComponent/CastComponent";
 
 import "./ShowDetails.css";
 import placeholderImg from "../../../assets/no_image.jpg";
@@ -38,6 +39,8 @@ const ShowDetails = (props) => {
         </ul>
       </div>
       <div className="summary">{details.summary || "No summary provided"}</div>
+      <h3>Cast:</h3>
+      <CastComponent {...details.cast} />
     </div>
   );
 };
