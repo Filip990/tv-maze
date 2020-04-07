@@ -30,7 +30,7 @@ const ShowDetails = (props) => {
         <img src={details.image || placeholderImg} alt="" />
 
         <ul>
-          <li> Year: {details.year || unknown} </li>
+          <li> Official Air Date: {details.year || unknown} </li>
           <li> Rating: {details.rating || unknown} </li>
           <li> Runtime: {details.runtime || unknown} </li>
           <li> Status: {details.status || unknown} </li>
@@ -41,8 +41,7 @@ const ShowDetails = (props) => {
         </ul>
       </div>
       <div className="summary">{details.summary || "No summary provided"}</div>
-      <h3>Cast:</h3>
-      <CastComponent {...details.cast} />
+      {details.cast && <CastComponent {...details.cast} />}
     </div>
   );
 };

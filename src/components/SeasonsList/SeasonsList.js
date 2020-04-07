@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 
 import "./SeasonsList.css";
 import placeholderImg from "../../assets/no_image.jpg";
+import { dateHelper, stripHtmlFromString } from "../../utils/helperFunctions";
 
 import Spinner from "../Spinner/Spinner";
 
@@ -11,11 +12,8 @@ const SeasonsList = () => {
   const [seasons, setSeasons] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const dateHelper = (date) =>
-    (date && date.split("-").reverse().join("-")) || "NN";
-
   useEffect(() => {
-    const getPersonDetails = async (id) => {
+    const getSeasonsList = async (id) => {
       try {
         const res = await fetch(`http://api.tvmaze.com/shows/${id}/seasons`);
         const seasonsList = await res.json();
@@ -26,7 +24,7 @@ const SeasonsList = () => {
       }
     };
 
-    getPersonDetails(id);
+    getSeasonsList(id);
   }, [id]);
 
   return (
@@ -49,7 +47,7 @@ const SeasonsList = () => {
               </ul>
             </div>
             <p className="summary">
-              {season.summary?.replace(/<[^>]+>/g, "") || "No summary provided"}
+              {stripHtmlFromString(season.summary) || "No summary provided"}
             </p>
           </div>
         ))
