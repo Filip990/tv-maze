@@ -16,8 +16,10 @@ const Home = () => {
   const showsToDisplay = !filteredShows.length ? tvShows : filteredShows;
 
   useEffect(() => {
-    dispatch(getAllTvShows());
-  }, [dispatch]);
+    if (!showsToDisplay.length) {
+      dispatch(getAllTvShows());
+    }
+  }, [dispatch, showsToDisplay]);
 
   return (
     <div className="main-container">
@@ -31,4 +33,4 @@ const Home = () => {
   );
 };
 
-export default React.memo(Home);
+export default Home;

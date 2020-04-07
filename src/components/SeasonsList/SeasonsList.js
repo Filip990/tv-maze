@@ -31,12 +31,12 @@ const SeasonsList = () => {
   }, [id]);
 
   return (
-    <div className="seasons-container">
+    <div>
       {isLoading ? (
         <Spinner />
       ) : (
         seasons.map((season) => (
-          <div key={season.id}>
+          <div key={season.id} className="seasons-container">
             <h3>Season: {season.number}</h3>
 
             <div className="seasons-info-container">

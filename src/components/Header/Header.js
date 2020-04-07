@@ -15,7 +15,7 @@ const Header = () => {
   const [inputValue, setInputValue] = useState("");
   const inputEl = useRef(null);
 
-  useEffect(() => inputEl.current.focus(), []);
+  useEffect(() => inputEl.current.focus(), [pathname]);
 
   const debouncedFn = debounce((val) => {
     dispatch(searchAllTvShows(val));
