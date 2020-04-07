@@ -36,6 +36,7 @@ const Header = () => {
         </NavLink>
       </div>
       <Input
+        type="search"
         onChange={search}
         placeholder="Search All TV Shows"
         disabled={disabled}

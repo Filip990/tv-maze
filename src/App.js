@@ -10,6 +10,7 @@ import Header from "./components/Header/Header";
 import ShowDetails from "./components/HomeComponent/ShowDetails/ShowDetails";
 import CastMember from "./components/HomeComponent/ShowDetails/CastComponent/CastMember/CastMember";
 import SeasonsList from "./components/SeasonsList/SeasonsList";
+import EpisodesList from "./components/SeasonsList/EpisodesList/EpisodesList";
 
 import tvShowsReducer from "./store/reducers/tvShowsReducer";
 import showDetailsReducer from "./store/reducers/showDetailsReducer";
@@ -33,6 +34,7 @@ function App() {
             <Route path="/show/:id" component={ShowDetails} />
             <Route path="/person/:id" component={CastMember} />
             <Route path="/seasons/:id" component={SeasonsList} />
+            <Route path="/episodes/:id" component={EpisodesList} />
           </Switch>
         </Router>
       </Provider>
