@@ -24,7 +24,7 @@ const initialState = {
     cast: [],
   },
   isFetching: false,
-  err: null,
+  error: null,
 };
 
 const showDetailsReducer = (state = initialState, action) => {
@@ -54,7 +54,7 @@ const showDetailsReducer = (state = initialState, action) => {
 
       case SHOW_DETAILS_REQUEST_FAILURE:
         draft.isFetching = false;
-        draft.err = action.err;
+        draft.error = action.error;
         break;
       default:
         return state;

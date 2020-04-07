@@ -9,9 +9,10 @@ import { getAllTvShows } from "../../store/actionCreators/homeActionCreator";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const { tvShows, filteredShows, isFetching } = useSelector(
+  const { tvShows, filteredShows, isFetching, error } = useSelector(
     (state) => state.allShows
   );
+
   const showsToDisplay = !filteredShows.length ? tvShows : filteredShows;
 
   useEffect(() => {
@@ -25,6 +26,7 @@ const Home = () => {
       ) : (
         showsToDisplay.map((show) => <TvShowCard key={show.id} {...show} />)
       )}
+      {error && <div> {error.message} </div>}
     </div>
   );
 };

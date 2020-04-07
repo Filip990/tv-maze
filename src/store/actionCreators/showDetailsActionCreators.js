@@ -14,10 +14,10 @@ export const getShowDetails = (id) => {
         type: SHOW_DETAILS_REQUEST_SUCCESS,
         details,
       });
-    } catch (err) {
+    } catch (error) {
       dispatch({
         type: SHOW_DETAILS_REQUEST_FAILURE,
-        err,
+        error,
       });
     }
   };

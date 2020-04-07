@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 import Spinner from "../../Spinner/Spinner";
 import CastComponent from "../../CastComponent/CastComponent";
@@ -8,12 +9,13 @@ import "./ShowDetails.css";
 import placeholderImg from "../../../assets/no_image.jpg";
 
 import { getShowDetails } from "../../../store/actionCreators/showDetailsActionCreators";
-import { Link } from "react-router-dom";
 
 const ShowDetails = (props) => {
   const dispatch = useDispatch();
   const { id } = props.match.params;
-  const { details, isFetching } = useSelector((state) => state.showDetails);
+  const { details, isFetching, error } = useSelector(
+    (state) => state.showDetails
+  );
   const unknown = "NN";
 
   useEffect(() => {
@@ -22,6 +24,8 @@ const ShowDetails = (props) => {
 
   return isFetching ? (
     <Spinner />
+  ) : error ? (
+    <div> {error.message} </div>
   ) : (
     <div className="details-container">
       <h1>{details.name}</h1>
@@ -41,7 +45,7 @@ const ShowDetails = (props) => {
         </ul>
       </div>
       <div className="summary">{details.summary || "No summary provided"}</div>
-      {details.cast && <CastComponent {...details.cast} />}
+      {details.cast.length !== 0 && <CastComponent {...details.cast} />}
     </div>
   );
 };

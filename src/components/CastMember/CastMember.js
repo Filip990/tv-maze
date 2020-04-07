@@ -3,9 +3,12 @@ import { useParams } from "react-router-dom";
 
 import "./CastMember.css";
 
+import { dateHelper } from "../../utils/helperFunctions";
+
 const CastMember = (props) => {
   const { id } = useParams();
   const [person, setPerson] = useState({});
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const getPersonDetails = async (id) => {
@@ -14,7 +17,7 @@ const CastMember = (props) => {
         const personDetails = await res.json();
         setPerson(personDetails);
       } catch (err) {
-        console.log(err);
+        setError(err.message);
       }
     };
 
@@ -26,11 +29,10 @@ const CastMember = (props) => {
       <img src={person.image?.medium} alt="" />
       <div>
         <h1>{person.name}</h1>
-        {person.birthday && (
-          <p> Birthday: {person.birthday.split("-").reverse().join("-")}</p>
-        )}
+        {person.birthday && <p> Birthday: {dateHelper(person.birthday)}</p>}
         {person.country && <p> Country: {person.country.name}</p>}
       </div>
+      {error && <div>{error}</div>}
     </div>
   );
 };

@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
+import { dateHelper, stripHtmlFromString } from "../../utils/helperFunctions";
+
 import "./SeasonsList.css";
 import placeholderImg from "../../assets/no_image.jpg";
-import { dateHelper, stripHtmlFromString } from "../../utils/helperFunctions";
 
 import Spinner from "../Spinner/Spinner";
 
 const SeasonsList = () => {
   const { id } = useParams();
   const [seasons, setSeasons] = useState([]);
+  const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -20,7 +22,8 @@ const SeasonsList = () => {
         setSeasons(seasonsList);
         setIsLoading(false);
       } catch (err) {
-        console.log(err);
+        setError(err.message);
+        setIsLoading(false);
       }
     };
 
@@ -41,7 +44,7 @@ const SeasonsList = () => {
               <ul>
                 <li>Official Air Date: {dateHelper(season.premiereDate)}</li>
                 <li>Official End Date: {dateHelper(season.endDate)}</li>
-                <li>No. of Episodes: {season.episodeOrder}</li>
+                <li>No. of Episodes: {season.episodeOrder || "NN"}</li>
                 <li>Network: {season.network?.name}</li>
                 <li>Country: {season.network?.country?.name} </li>
               </ul>
@@ -52,6 +55,7 @@ const SeasonsList = () => {
           </div>
         ))
       )}
+      {error && <span>{error}</span>}
     </div>
   );
 };
