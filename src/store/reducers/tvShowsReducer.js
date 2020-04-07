@@ -1,12 +1,12 @@
 import {
   GET_ALL_TV_SHOWS_SUCCESS,
   GET_ALL_TV_SHOWS_FAILURE,
-  GET_ALL_TV_SHOWS_REQUEST
+  GET_ALL_TV_SHOWS_REQUEST,
 } from "../actions/homeActionTypes";
 import {
   SEARCH_TV_SHOWS_SUCCESS,
   SEARCH_TV_SHOWS_FAILURE,
-  SEARCH_TV_SHOWS_REQUEST
+  SEARCH_TV_SHOWS_REQUEST,
 } from "../actions/searchActionTypes";
 
 import produce from "immer";
@@ -15,11 +15,11 @@ const initialState = {
   tvShows: [],
   filteredShows: [],
   isFetching: false,
-  err: null
+  error: null,
 };
 
 const tvShowsReducer = (state = initialState, action) => {
-  return produce(state, draft => {
+  return produce(state, (draft) => {
     switch (action.type) {
       case GET_ALL_TV_SHOWS_REQUEST:
         draft.isFetching = true;
@@ -28,13 +28,13 @@ const tvShowsReducer = (state = initialState, action) => {
       case GET_ALL_TV_SHOWS_SUCCESS:
         draft.tvShows = action.tvShows;
         draft.isFetching = false;
-        draft.err = null;
+        draft.error = null;
         break;
 
       case GET_ALL_TV_SHOWS_FAILURE:
         draft.tvShows = [];
         draft.isFetching = false;
-        draft.err = action.err;
+        draft.error = action.error;
         break;
 
       case SEARCH_TV_SHOWS_REQUEST:
@@ -42,15 +42,15 @@ const tvShowsReducer = (state = initialState, action) => {
         break;
 
       case SEARCH_TV_SHOWS_SUCCESS:
-        draft.filteredShows = action.tvShows.map(item => item.show);
+        draft.filteredShows = action.tvShows.map((item) => item.show);
         draft.isFetching = false;
-        draft.err = null;
+        draft.error = null;
         break;
 
       case SEARCH_TV_SHOWS_FAILURE:
         draft.filteredShows = [];
         draft.isFetching = false;
-        draft.err = action.err;
+        draft.error = action.error;
         break;
 
       default:

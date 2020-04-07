@@ -8,7 +8,7 @@ import "./App.css";
 import Home from "./components/HomeComponent/HomeComponent";
 import Header from "./components/Header/Header";
 import ShowDetails from "./components/HomeComponent/ShowDetails/ShowDetails";
-import CastMember from "./components/CastMember/CastMember";
+import CastMember from "./components/HomeComponent/ShowDetails/CastComponent/CastMember/CastMember";
 import SeasonsList from "./components/SeasonsList/SeasonsList";
 
 import tvShowsReducer from "./store/reducers/tvShowsReducer";

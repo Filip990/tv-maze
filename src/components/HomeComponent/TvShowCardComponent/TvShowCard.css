@@ -6,7 +6,16 @@
   color: black;
 }
 
-.show-card img {
+.show-card:hover {
+  background: #e5e5ec;
+}
+
+.card-img-container {
+  width: 150px;
+  height: 210px;
+  margin: auto;
+}
+.card-img-container img {
   width: 150px;
 }
 

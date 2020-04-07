@@ -4,6 +4,8 @@ import {
   SHOW_DETAILS_REQUEST_FAILURE,
 } from "../actions/showDetailsActionTypes";
 
+import { dateHelper, stripHtmlFromString } from "../../utils/helperFunctions";
+
 import produce from "immer";
 
 const initialState = {
@@ -22,7 +24,7 @@ const initialState = {
     cast: [],
   },
   isFetching: false,
-  err: null,
+  error: null,
 };
 
 const showDetailsReducer = (state = initialState, action) => {
@@ -36,7 +38,7 @@ const showDetailsReducer = (state = initialState, action) => {
         draft.details = {
           name: action.details.name,
           language: action.details.language,
-          year: action.details.premiered?.split("-").reverse().join("-"),
+          year: dateHelper(action.details.premiered),
           genres: action.details.genres.join(", "),
           status: action.details.status,
           runtime: action.details?.runtime,
@@ -44,7 +46,7 @@ const showDetailsReducer = (state = initialState, action) => {
           network: action.details.network?.name,
           country: action.details.network?.country?.name,
           image: action.details.image?.medium,
-          summary: action.details.summary?.replace(/<[^>]+>/g, ""), // strip HTML tags from the text
+          summary: stripHtmlFromString(action.details.summary),
           cast: action.details._embedded?.cast,
         };
         draft.isFetching = false;
@@ -52,7 +54,7 @@ const showDetailsReducer = (state = initialState, action) => {
 
       case SHOW_DETAILS_REQUEST_FAILURE:
         draft.isFetching = false;
-        draft.err = action.err;
+        draft.error = action.error;
         break;
       default:
         return state;

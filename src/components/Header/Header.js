@@ -19,7 +19,7 @@ const Header = () => {
 
   const debouncedFn = debounce((val) => {
     dispatch(searchAllTvShows(val));
-  }, 300);
+  }, 500);
 
   const search = (event) => {
     const { value } = event.target;
