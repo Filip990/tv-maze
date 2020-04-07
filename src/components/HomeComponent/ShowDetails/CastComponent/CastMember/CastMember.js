@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 
 import "./CastMember.css";
 
-import { dateHelper } from "../../utils/helperFunctions";
+import { dateHelper } from "../../../../../utils/helperFunctions";
 
 const CastMember = (props) => {
   const { id } = useParams();

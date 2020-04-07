@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import Spinner from "../../Spinner/Spinner";
-import CastComponent from "../../CastComponent/CastComponent";
+import CastComponent from "./CastComponent/CastComponent";
 
 import "./ShowDetails.css";
 import placeholderImg from "../../../assets/no_image.jpg";
