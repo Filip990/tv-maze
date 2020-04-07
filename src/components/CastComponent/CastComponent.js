@@ -7,7 +7,7 @@ const CastComponent = (props) => {
   const cast = Object.values(props);
 
   const uniqActors = Array.from(
-    new Map(cast.map((e) => [e.person.id, e])).values()
+    new Map(cast.map((actor) => [actor.person.id, actor])).values()
   );
 
   return (

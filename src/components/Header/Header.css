@@ -5,6 +5,9 @@
   font-weight: 500;
   margin-bottom: 12px;
   text-align: initial;
+  position: sticky;
+  top: 0;
+  background: #ffffff;
 }
 
 .header input {
