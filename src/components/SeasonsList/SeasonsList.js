@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 import { dateHelper, stripHtmlFromString } from "../../utils/helperFunctions";
 
@@ -41,6 +41,7 @@ const SeasonsList = () => {
 
             <div className="seasons-info-container">
               <img src={season.image?.medium || placeholderImg} alt="" />
+              <Link to={`/episodes/${season.id}`}>See Episodes</Link>
               <ul>
                 <li>Official Air Date: {dateHelper(season.premiereDate)}</li>
                 <li>Official End Date: {dateHelper(season.endDate)}</li>
