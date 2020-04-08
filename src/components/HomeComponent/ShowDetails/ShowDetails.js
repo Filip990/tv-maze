@@ -9,6 +9,7 @@ import "./ShowDetails.css";
 import placeholderImg from "../../../assets/no_image.jpg";
 
 import { getShowDetails } from "../../../store/actionCreators/showDetailsActionCreators";
+import { handleMissingData } from "../../../utils/helperFunctions";
 
 const ShowDetails = (props) => {
   const dispatch = useDispatch();
@@ -16,7 +17,6 @@ const ShowDetails = (props) => {
   const { details, isFetching, error } = useSelector(
     (state) => state.showDetails
   );
-  const unknown = "NN";
 
   useEffect(() => {
     dispatch(getShowDetails(id));
@@ -34,14 +34,14 @@ const ShowDetails = (props) => {
         <img src={details.image || placeholderImg} alt="" />
 
         <ul>
-          <li> Official Air Date: {details.year || unknown} </li>
-          <li> Rating: {details.rating || unknown} </li>
-          <li> Runtime: {details.runtime || unknown} </li>
-          <li> Status: {details.status || unknown} </li>
-          <li> Language: {details.language || unknown} </li>
-          <li> Network: {details.network || unknown} </li>
-          <li> Country: {details.country || unknown} </li>
-          <li> Genres: {details.genres || unknown} </li>
+          <li> Official Air Date: {details.year || handleMissingData} </li>
+          <li> Rating: {details.rating || handleMissingData} </li>
+          <li> Runtime: {details.runtime || handleMissingData} </li>
+          <li> Status: {details.status || handleMissingData} </li>
+          <li> Language: {details.language || handleMissingData} </li>
+          <li> Network: {details.network || handleMissingData} </li>
+          <li> Country: {details.country || handleMissingData} </li>
+          <li> Genres: {details.genres || handleMissingData} </li>
         </ul>
       </div>
       <div className="summary">{details.summary || "No summary provided"}</div>

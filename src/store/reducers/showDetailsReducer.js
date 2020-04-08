@@ -4,7 +4,11 @@ import {
   SHOW_DETAILS_REQUEST_FAILURE,
 } from "../actions/showDetailsActionTypes";
 
-import { dateHelper, stripHtmlFromString } from "../../utils/helperFunctions";
+import {
+  dateHelper,
+  stripHtmlFromString,
+  genresHandler,
+} from "../../utils/helperFunctions";
 
 import produce from "immer";
 
@@ -39,7 +43,7 @@ const showDetailsReducer = (state = initialState, action) => {
           name: action.details.name,
           language: action.details.language,
           year: dateHelper(action.details.premiered),
-          genres: action.details.genres.join(", "),
+          genres: genresHandler(action.details.genres),
           status: action.details.status,
           runtime: action.details?.runtime,
           rating: action.details.rating?.average,
