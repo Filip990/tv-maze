@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 
-import { dateHelper, stripHtmlFromString } from "../../utils/helperFunctions";
+import {
+  dateHelper,
+  stripHtmlFromString,
+  handleMissingData,
+} from "../../utils/helperFunctions";
 
 import "./SeasonsList.css";
 import placeholderImg from "../../assets/no_image.jpg";
@@ -43,11 +47,21 @@ const SeasonsList = () => {
               <img src={season.image?.medium || placeholderImg} alt="" />
               <Link to={`/episodes/${season.id}`}>See Episodes</Link>
               <ul>
-                <li>Official Air Date: {dateHelper(season.premiereDate)}</li>
-                <li>Official End Date: {dateHelper(season.endDate)}</li>
-                <li>No. of Episodes: {season.episodeOrder || "NN"}</li>
-                <li>Network: {season.network?.name}</li>
-                <li>Country: {season.network?.country?.name} </li>
+                <li>
+                  Official Air Date:{" "}
+                  {dateHelper(season.premiereDate) || handleMissingData}
+                </li>
+                <li>
+                  Official End Date:{" "}
+                  {dateHelper(season.endDate) || handleMissingData}
+                </li>
+                <li>
+                  No. of Episodes: {season.episodeOrder || handleMissingData}
+                </li>
+                <li>Network: {season.network?.name || handleMissingData}</li>
+                <li>
+                  Country: {season.network?.country?.name || handleMissingData}{" "}
+                </li>
               </ul>
             </div>
             <p className="summary">
