@@ -1,0 +1,19 @@
+.container {
+  position: relative;
+  width: 25%;
+  margin: auto;
+}
+
+.container button {
+  width: -webkit-fill-available;
+}
+
+.drop-down-visible {
+  display: block;
+  position: absolute;
+  background: #f3f3f3;
+}
+
+.drop-down-hidden {
+  display: none;
+}
