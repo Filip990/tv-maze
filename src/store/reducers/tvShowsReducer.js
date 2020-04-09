@@ -2,6 +2,7 @@ import {
   GET_ALL_TV_SHOWS_SUCCESS,
   GET_ALL_TV_SHOWS_FAILURE,
   GET_ALL_TV_SHOWS_REQUEST,
+  SET_DROPDOWN_VALUE,
 } from "../actions/homeActionTypes";
 import {
   SEARCH_TV_SHOWS_SUCCESS,
@@ -15,6 +16,7 @@ const initialState = {
   tvShows: [],
   filteredShows: [],
   isFetching: false,
+  selected: "",
   error: null,
 };
 
@@ -51,6 +53,10 @@ const tvShowsReducer = (state = initialState, action) => {
         draft.filteredShows = [];
         draft.isFetching = false;
         draft.error = action.error;
+        break;
+
+      case SET_DROPDOWN_VALUE:
+        draft.selected = action.value;
         break;
 
       default:

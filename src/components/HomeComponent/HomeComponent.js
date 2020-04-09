@@ -21,11 +21,11 @@ const dropdownOptions = [
 
 const Home = () => {
   const dispatch = useDispatch();
-  const { tvShows, filteredShows, isFetching, error } = useSelector(
+  const { tvShows, filteredShows, isFetching, selected, error } = useSelector(
     (state) => state.allShows
   );
 
-  const [selectedOpt, setSelectedOpt] = useState(dropdownOptions[0].value);
+  const [selectedOpt, setSelectedOpt] = useState(selected);
 
   const showsToDisplay = useMemo(() => {
     const filtered = (!filteredShows.length ? tvShows : filteredShows).filter(
@@ -41,8 +41,10 @@ const Home = () => {
   }, [tvShows, filteredShows, selectedOpt]);
 
   useEffect(() => {
-    dispatch(getAllTvShows());
-  }, [dispatch]);
+    if (!showsToDisplay.length) {
+      dispatch(getAllTvShows());
+    }
+  }, [dispatch, showsToDisplay]);
 
   const changeSelectedGenre = (event) => {
     const { value } = event.target;
@@ -54,7 +56,7 @@ const Home = () => {
       <Dropdown
         options={dropdownOptions}
         label={`Filter: ${selectedOpt}`}
-        value={selectedOpt}
+        selected={selected}
         onChange={changeSelectedGenre}
       />
       <div className="main-container">
