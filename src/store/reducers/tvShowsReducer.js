@@ -16,7 +16,7 @@ const initialState = {
   tvShows: [],
   filteredShows: [],
   isFetching: false,
-  selected: "",
+  selected: "all shows",
   error: null,
 };
 

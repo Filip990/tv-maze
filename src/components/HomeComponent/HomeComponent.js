@@ -20,6 +20,10 @@ const dropdownOptions = [
   { value: "science-fiction", label: "Science-Fiction" },
   { value: "romance", label: "Romance" },
   { value: "thriller", label: "Thriller" },
+  { value: "action", label: "Action" },
+  { value: "crime", label: "Crime" },
+  { value: "adventure", label: "Adventure" },
+  { value: "mystery", label: "Mystery" },
 ];
 
 const Home = () => {
@@ -28,16 +32,14 @@ const Home = () => {
     (state) => state.allShows
   );
 
-  const selectedOpt = selected || dropdownOptions[0].value;
+  const selectedOpt = selected;
 
   const showsToDisplay = useMemo(() => {
     const filtered = (!filteredShows.length ? tvShows : filteredShows).filter(
       (show) => {
-        if (selectedOpt !== "all shows") {
-          return show.genres?.join(",").toLowerCase().indexOf(selectedOpt) > -1;
-        } else {
-          return show;
-        }
+        return selectedOpt !== "all shows"
+          ? show.genres?.join(",").toLowerCase().indexOf(selectedOpt) > -1
+          : show;
       }
     );
 
