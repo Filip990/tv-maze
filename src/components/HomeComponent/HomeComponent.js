@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import TvShowCard from "./TvShowCardComponent/TvShowCard";
@@ -7,10 +7,13 @@ import Dropdown from "../Dropdown/Dropdown";
 
 import "./HomeComponent.css";
 
-import { getAllTvShows } from "../../store/actionCreators/homeActionCreator";
+import {
+  getAllTvShows,
+  setDropdownValue,
+} from "../../store/actionCreators/homeActionCreator";
 
 const dropdownOptions = [
-  { value: "all Shows", label: "All Shows" },
+  { value: "all shows", label: "All Shows" },
   { value: "drama", label: "Drama" },
   { value: "horror", label: "Horror" },
   { value: "comedy", label: "Comedy" },
@@ -25,7 +28,7 @@ const Home = () => {
     (state) => state.allShows
   );
 
-  const [selectedOpt, setSelectedOpt] = useState(selected);
+  const selectedOpt = selected;
 
   const showsToDisplay = useMemo(() => {
     const filtered = (!filteredShows.length ? tvShows : filteredShows).filter(
@@ -41,14 +44,12 @@ const Home = () => {
   }, [tvShows, filteredShows, selectedOpt]);
 
   useEffect(() => {
-    if (!showsToDisplay.length) {
-      dispatch(getAllTvShows());
-    }
-  }, [dispatch, showsToDisplay]);
+    dispatch(getAllTvShows());
+  }, [dispatch]);
 
   const changeSelectedGenre = (event) => {
     const { value } = event.target;
-    setSelectedOpt(value);
+    dispatch(setDropdownValue(value));
   };
 
   return (
