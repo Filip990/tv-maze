@@ -28,15 +28,16 @@ const Home = () => {
     (state) => state.allShows
   );
 
-  const selectedOpt = selected;
+  const selectedOpt = selected || dropdownOptions[0].value;
 
   const showsToDisplay = useMemo(() => {
     const filtered = (!filteredShows.length ? tvShows : filteredShows).filter(
       (show) => {
-        if (selectedOpt !== "all Shows") {
+        if (selectedOpt !== "all shows") {
           return show.genres?.join(",").toLowerCase().indexOf(selectedOpt) > -1;
+        } else {
+          return show;
         }
-        return show;
       }
     );
 
