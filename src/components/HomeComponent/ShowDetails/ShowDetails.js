@@ -32,7 +32,6 @@ const ShowDetails = (props) => {
       <Link to={`/seasons/${id}`}>Show all seasons</Link>
       <ListContainer>
         <img src={details.image || placeholderImg} alt="" />
-
         <DetailsList {...details} />
       </ListContainer>
       <Summary>{details.summary || "No summary provided"}</Summary>

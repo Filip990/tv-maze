@@ -8,10 +8,7 @@ import {
   Image,
 } from "./TvShowCardComponent.styled";
 
-import {
-  handleMissingData,
-  genresHandler,
-} from "../../../utils/helperFunctions";
+import { genresHandler } from "../../../utils/helperFunctions";
 
 const TvShowCard = (props) => {
   return (
@@ -19,7 +16,7 @@ const TvShowCard = (props) => {
       <Image src={props.image?.medium || placeholderImg} alt="" />
       <ShowTitle>{props.name}</ShowTitle>
       <DetailsWrapper>
-        <span>Rating: {props.rating?.average || handleMissingData}</span>
+        <span>Rating: {props.rating?.average || "NN"}</span>
         <span>{genresHandler(props.genres)}</span>
       </DetailsWrapper>
     </TvShowLink>
