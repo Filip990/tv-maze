@@ -2,11 +2,10 @@ import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { debounce } from "lodash";
 
-import "./Header.css";
-import Input from "../Input/Input";
+import { StyledHeader, HeaderInput, Title, HeaderLink } from "./Header.styled";
 
 import { searchAllTvShows } from "../../store/actionCreators/searchActionCreator";
-import { NavLink, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -28,14 +27,14 @@ const Header = () => {
   };
 
   return (
-    <div className="header">
+    <StyledHeader>
       <div>
-        <h1>TvMaze</h1>
-        <NavLink exact to="/" activeClassName="nav-active">
+        <Title>TvMaze</Title>
+        <HeaderLink exact to="/" activeClassName="active">
           Home
-        </NavLink>
+        </HeaderLink>
       </div>
-      <Input
+      <HeaderInput
         type="search"
         onChange={search}
         placeholder="Search All TV Shows"
@@ -43,7 +42,7 @@ const Header = () => {
         value={inputValue}
         elementRef={inputEl}
       />
-    </div>
+    </StyledHeader>
   );
 };
 

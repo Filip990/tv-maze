@@ -4,5 +4,3 @@ export const stripHtmlFromString = (string) =>
   string && string.replace(/<[^>]+>/g, "");
 
 export const genresHandler = (arr) => arr.join(", ");
-
-export const handleMissingData = "NN";

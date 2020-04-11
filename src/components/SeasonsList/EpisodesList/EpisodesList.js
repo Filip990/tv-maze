@@ -6,6 +6,7 @@ import {
   stripHtmlFromString,
 } from "../../../utils/helperFunctions";
 import placeholderImg from "../../../assets/no_image.jpg";
+import { Episodes, EpisodeListItem, Summary } from "./EpisodesList.styled";
 
 import Spinner from "../../Spinner/Spinner";
 
@@ -29,25 +30,27 @@ const EpisodesList = () => {
 
     getEpisodesList(id);
   }, [id]);
-  console.log(episodes);
+
   return (
     <div>
       {isLoading ? (
         <Spinner />
       ) : (
-        <ul>
+        <Episodes>
           {episodes.map((episode) => (
-            <li key={episode.id}>
-              <h3>Name: {episode.name}</h3>
-              <p>Official Air Date: {dateHelper(episode.airdate)}</p>
-              <p>Runtime: {episode.runtime}</p>
-              <img src={episode.image?.medium || placeholderImg} alt="" />
-              <p>
+            <EpisodeListItem key={episode.id}>
+              <div>
+                <h3> {episode.name}</h3>
+                <p>Official Air Date: {dateHelper(episode.airdate)}</p>
+                <p>Runtime: {episode.runtime}</p>
+                <img src={episode.image?.medium || placeholderImg} alt="" />
+              </div>
+              <Summary>
                 {stripHtmlFromString(episode.summary) || "No summary provided"}
-              </p>
-            </li>
+              </Summary>
+            </EpisodeListItem>
           ))}
-        </ul>
+        </Episodes>
       )}
       {error && <span>{error}</span>}
     </div>

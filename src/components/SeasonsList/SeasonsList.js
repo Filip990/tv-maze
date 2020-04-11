@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 
-import {
-  dateHelper,
-  stripHtmlFromString,
-  handleMissingData,
-} from "../../utils/helperFunctions";
+import { stripHtmlFromString } from "../../utils/helperFunctions";
 
-import "./SeasonsList.css";
 import placeholderImg from "../../assets/no_image.jpg";
+import {
+  SeasonsInfoWrapper,
+  Summary,
+  SeasonNumber,
+} from "./SeasonsList.styled";
 
 import Spinner from "../Spinner/Spinner";
+import DetailsList from "../DetailsList/DetailsList";
 
 const SeasonsList = () => {
   const { id } = useParams();
@@ -40,33 +41,17 @@ const SeasonsList = () => {
         <Spinner />
       ) : (
         seasons.map((season) => (
-          <div key={season.id} className="seasons-container">
-            <h3>Season: {season.number}</h3>
+          <div key={season.id}>
+            <SeasonNumber>Season: {season.number}</SeasonNumber>
 
-            <div className="seasons-info-container">
+            <SeasonsInfoWrapper>
               <img src={season.image?.medium || placeholderImg} alt="" />
               <Link to={`/episodes/${season.id}`}>See Episodes</Link>
-              <ul>
-                <li>
-                  Official Air Date:{" "}
-                  {dateHelper(season.premiereDate) || handleMissingData}
-                </li>
-                <li>
-                  Official End Date:{" "}
-                  {dateHelper(season.endDate) || handleMissingData}
-                </li>
-                <li>
-                  No. of Episodes: {season.episodeOrder || handleMissingData}
-                </li>
-                <li>Network: {season.network?.name || handleMissingData}</li>
-                <li>
-                  Country: {season.network?.country?.name || handleMissingData}{" "}
-                </li>
-              </ul>
-            </div>
-            <p className="summary">
+              <DetailsList {...season} />
+            </SeasonsInfoWrapper>
+            <Summary>
               {stripHtmlFromString(season.summary) || "No summary provided"}
-            </p>
+            </Summary>
           </div>
         ))
       )}

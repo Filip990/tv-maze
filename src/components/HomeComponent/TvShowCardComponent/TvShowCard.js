@@ -1,26 +1,25 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 import placeholderImg from "../../../assets/no_image.jpg";
-import "./TvShowCard.css";
-
 import {
-  handleMissingData,
-  genresHandler,
-} from "../../../utils/helperFunctions";
+  TvShowLink,
+  DetailsWrapper,
+  ShowTitle,
+  Image,
+} from "./TvShowCardComponent.styled";
+
+import { genresHandler } from "../../../utils/helperFunctions";
 
 const TvShowCard = (props) => {
   return (
-    <Link to={`/show/${props.id}`} className="show-card">
-      <div className="card-img-container">
-        <img src={props.image?.medium || placeholderImg} alt="" />
-      </div>
-      <h4>{props.name}</h4>
-      <div className="short-details">
-        <span>Rating: {props.rating?.average || handleMissingData}</span>
+    <TvShowLink to={`/show/${props.id}`} className="show-card">
+      <Image src={props.image?.medium || placeholderImg} alt="" />
+      <ShowTitle>{props.name}</ShowTitle>
+      <DetailsWrapper>
+        <span>Rating: {props.rating?.average || "NN"}</span>
         <span>{genresHandler(props.genres)}</span>
-      </div>
-    </Link>
+      </DetailsWrapper>
+    </TvShowLink>
   );
 };
 

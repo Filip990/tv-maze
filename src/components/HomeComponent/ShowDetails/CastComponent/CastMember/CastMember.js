@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import "./CastMember.css";
+import { PersonDetails } from "./CastMember.styled";
 
 import { dateHelper } from "../../../../../utils/helperFunctions";
 
@@ -25,7 +25,7 @@ const CastMember = (props) => {
   }, [id]);
 
   return (
-    <div className="person-details-container">
+    <PersonDetails>
       <img src={person.image?.medium} alt="" />
       <div>
         <h1>{person.name}</h1>
@@ -33,7 +33,7 @@ const CastMember = (props) => {
         {person.country && <p> Country: {person.country.name}</p>}
       </div>
       {error && <div>{error}</div>}
-    </div>
+    </PersonDetails>
   );
 };
 

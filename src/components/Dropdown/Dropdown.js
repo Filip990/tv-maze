@@ -1,5 +1,10 @@
 import React, { useState } from "react";
-import "./Dropdown.css";
+
+import {
+  DropdownContainer,
+  DropdownButtonsContainer,
+  DropdownButton,
+} from "./Dropdown.styled";
 
 const Dropdown = (props) => {
   const [visible, setVisible] = useState(false);
@@ -9,23 +14,20 @@ const Dropdown = (props) => {
   };
 
   return (
-    <div className="container">
-      <button onClick={toggleDropdown}>{props.label}</button>
-      <div
-        className={visible ? "drop-down-visible" : "drop-down-hidden"}
-        onClick={toggleDropdown}
-      >
+    <DropdownContainer>
+      <DropdownButton onClick={toggleDropdown}>{props.label}</DropdownButton>
+      <DropdownButtonsContainer visible={visible} onClick={toggleDropdown}>
         {props.options.map((option) => (
-          <button
+          <DropdownButton
             key={option.value}
             value={option.value}
             onClick={props.onChange}
           >
             {option.label}
-          </button>
+          </DropdownButton>
         ))}
-      </div>
-    </div>
+      </DropdownButtonsContainer>
+    </DropdownContainer>
   );
 };
 

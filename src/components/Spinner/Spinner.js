@@ -1,8 +1,8 @@
 import React from "react";
-import "./Spinner.css";
+import { Rotate } from "./Spinner.styled";
 
 const Spinner = () => {
-  return <div className="loader"></div>;
+  return <Rotate></Rotate>;
 };
 
 export default Spinner;
