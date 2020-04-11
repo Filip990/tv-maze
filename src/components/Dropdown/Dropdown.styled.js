@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 export const DropdownContainer = styled.div`
   position: relative;
@@ -11,16 +11,7 @@ export const DropdownButton = styled.button`
 `;
 
 export const DropdownButtonsContainer = styled.div`
-  ${(props) =>
-    props.visible &&
-    css`
-      display: block;
-      position: absolute;
-      background: #f3f3f3;
-    `}
-  ${(props) =>
-    props.visible === false &&
-    css`
-      display: none;
-    `}
+  position: absolute;
+  background: #f3f3f3;
+  display: ${(props) => (props.visible ? "block" : "none")};
 `;
