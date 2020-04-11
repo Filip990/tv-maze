@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import Spinner from "../../Spinner/Spinner";
 import CastComponent from "./CastComponent/CastComponent";
 
-import "./ShowDetails.css";
+import { DetailsList, Summary, ListContainer } from "./ShowDetails.styled";
 import placeholderImg from "../../../assets/no_image.jpg";
 
 import { getShowDetails } from "../../../store/actionCreators/showDetailsActionCreators";
@@ -27,13 +27,13 @@ const ShowDetails = (props) => {
   ) : error ? (
     <div> {error.message} </div>
   ) : (
-    <div className="details-container">
+    <div>
       <h1>{details.name}</h1>
       <Link to={`/seasons/${id}`}>Show all seasons</Link>
-      <div className="img-container">
+      <ListContainer>
         <img src={details.image || placeholderImg} alt="" />
 
-        <ul>
+        <DetailsList>
           <li> Official Air Date: {details.year || handleMissingData} </li>
           <li> Rating: {details.rating || handleMissingData} </li>
           <li> Runtime: {details.runtime || handleMissingData} </li>
@@ -42,9 +42,9 @@ const ShowDetails = (props) => {
           <li> Network: {details.network || handleMissingData} </li>
           <li> Country: {details.country || handleMissingData} </li>
           <li> Genres: {details.genres || handleMissingData} </li>
-        </ul>
-      </div>
-      <div className="summary">{details.summary || "No summary provided"}</div>
+        </DetailsList>
+      </ListContainer>
+      <Summary>{details.summary || "No summary provided"}</Summary>
       {details.cast.length !== 0 && <CastComponent {...details.cast} />}
     </div>
   );
