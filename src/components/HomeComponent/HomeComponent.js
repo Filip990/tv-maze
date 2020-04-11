@@ -13,6 +13,7 @@ import {
 } from "../../store/actionCreators/homeActionCreator";
 
 const dropdownOptions = [
+  // TODO: remove into separate file
   { value: "all shows", label: "All Shows" },
   { value: "drama", label: "Drama" },
   { value: "horror", label: "Horror" },
@@ -37,7 +38,7 @@ const Home = () => {
   const showsToDisplay = useMemo(() => {
     const filtered = (!filteredShows.length ? tvShows : filteredShows).filter(
       (show) => {
-        return selectedOpt !== "all shows"
+        return selectedOpt !== "all shows" // default
           ? show.genres?.join(",").toLowerCase().indexOf(selectedOpt) > -1
           : show;
       }

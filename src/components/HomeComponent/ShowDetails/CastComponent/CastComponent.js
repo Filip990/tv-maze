@@ -6,6 +6,7 @@ const CastComponent = (props) => {
   const cast = Object.values(props);
 
   const uniqActors = Array.from(
+    // filter duplicates, API returns duplicates for some reason
     new Map(cast.map((actor) => [actor.person.id, actor])).values()
   );
 
