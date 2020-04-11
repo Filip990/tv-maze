@@ -57,11 +57,14 @@ const Home = () => {
     resetScrollPosition();
   };
 
-  const resetScrollPosition = () =>
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+  const resetScrollPosition = () => {
+    if (window.scrollY !== 0) {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+  };
 
   return (
     <div>

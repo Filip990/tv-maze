@@ -4,7 +4,7 @@ export const DropdownContainer = styled.div`
   position: sticky;
   top: 10px;
   width: 25%;
-  margin: auto;
+  margin: 0 auto 2%;
 `;
 
 export const DropdownButton = styled.button`
