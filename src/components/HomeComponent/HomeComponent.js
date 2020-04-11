@@ -53,7 +53,14 @@ const Home = () => {
   const changeSelectedGenre = (event) => {
     const { value } = event.target;
     dispatch(setDropdownValue(value));
+    resetScrollPosition();
   };
+
+  const resetScrollPosition = () =>
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
 
   return (
     <div>

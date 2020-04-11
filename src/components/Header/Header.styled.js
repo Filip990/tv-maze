@@ -34,10 +34,10 @@ export const HeaderLink = styled(NavLink)`
 
   :hover {
     color: white;
-    background: black;
+    background: #2196f3;
   }
   &.active {
     color: white;
-    background: black;
+    background: #2196f3;
   }
 `;

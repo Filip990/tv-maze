@@ -46,7 +46,7 @@ const SeasonsList = () => {
 
             <SeasonsInfoWrapper>
               <img src={season.image?.medium || placeholderImg} alt="" />
-              <Link to={`/episodes/${season.id}`}>See Episodes</Link>
+              <Link to={`/episodes/${season.id}`}>See Episodes &#10148;</Link>
               <DetailsList {...season} />
             </SeasonsInfoWrapper>
             <Summary>

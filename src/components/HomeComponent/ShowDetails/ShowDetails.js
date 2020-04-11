@@ -29,7 +29,7 @@ const ShowDetails = (props) => {
   ) : (
     <div>
       <h1>{details.name}</h1>
-      <Link to={`/seasons/${id}`}>Show all seasons</Link>
+      <Link to={`/seasons/${id}`}>Show all seasons &#10148;</Link>
       <ListContainer>
         <img src={details.image || placeholderImg} alt="" />
         <DetailsList {...details} />

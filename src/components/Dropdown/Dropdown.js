@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import {
   DropdownContainer,
   DropdownButtonsContainer,
+  ToggleDropdownButton,
   DropdownButton,
 } from "./Dropdown.styled";
 
@@ -15,7 +16,9 @@ const Dropdown = (props) => {
 
   return (
     <DropdownContainer>
-      <DropdownButton onClick={toggleDropdown}>{props.label}</DropdownButton>
+      <ToggleDropdownButton onClick={toggleDropdown}>
+        {props.label}
+      </ToggleDropdownButton>
       <DropdownButtonsContainer visible={visible} onClick={toggleDropdown}>
         {props.options.map((option) => (
           <DropdownButton
