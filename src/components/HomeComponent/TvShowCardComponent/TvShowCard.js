@@ -1,8 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 import placeholderImg from "../../../assets/no_image.jpg";
-import "./TvShowCard.css";
+import {
+  TvShowLink,
+  DetailsWrapper,
+  ShowTitle,
+  Image,
+} from "./TvShowCardComponent.styled";
 
 import {
   handleMissingData,
@@ -11,16 +15,14 @@ import {
 
 const TvShowCard = (props) => {
   return (
-    <Link to={`/show/${props.id}`} className="show-card">
-      <div className="card-img-container">
-        <img src={props.image?.medium || placeholderImg} alt="" />
-      </div>
-      <h4>{props.name}</h4>
-      <div className="short-details">
+    <TvShowLink to={`/show/${props.id}`} className="show-card">
+      <Image src={props.image?.medium || placeholderImg} alt="" />
+      <ShowTitle>{props.name}</ShowTitle>
+      <DetailsWrapper>
         <span>Rating: {props.rating?.average || handleMissingData}</span>
         <span>{genresHandler(props.genres)}</span>
-      </div>
-    </Link>
+      </DetailsWrapper>
+    </TvShowLink>
   );
 };
 
