@@ -1,13 +1,5 @@
 import styled from "styled-components";
 
-export const DetailsList = styled.ul`
-  list-style: none;
-  border: 1px solid #cec8c8;
-  text-align: center;
-  line-height: 2;
-  padding: 20px;
-`;
-
 export const Summary = styled.div`
   line-height: 1.6;
   width: 80%;

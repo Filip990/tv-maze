@@ -5,7 +5,7 @@ import TvShowCard from "./TvShowCardComponent/TvShowCard";
 import Spinner from "../Spinner/Spinner";
 import Dropdown from "../Dropdown/Dropdown";
 
-import "./HomeComponent.css";
+import { MainContainer } from "./HomeComponent.styled";
 
 import {
   getAllTvShows,
@@ -63,14 +63,14 @@ const Home = () => {
         selected={selected}
         onChange={changeSelectedGenre}
       />
-      <div className="main-container">
+      <MainContainer>
         {isFetching ? (
           <Spinner />
         ) : (
           showsToDisplay.map((show) => <TvShowCard key={show.id} {...show} />)
         )}
         {error && <div> {error.message} </div>}
-      </div>
+      </MainContainer>
     </div>
   );
 };
