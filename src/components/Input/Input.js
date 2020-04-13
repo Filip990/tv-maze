@@ -1,19 +1,17 @@
 import React from "react";
 
-import "./Input.css";
+import { StyledInput } from "./Input.styled";
 
-const Input = (props) => {
-  return (
-    <input
-      className={props.className}
-      type={props.type}
-      value={props.value}
-      placeholder={props.placeholder}
-      disabled={props.disabled}
-      ref={props.elementRef}
-      onChange={props.onChange}
-    />
-  );
-};
+const Input = (props) => (
+  <StyledInput
+    className={props.className}
+    type={props.type}
+    value={props.value}
+    placeholder={props.placeholder}
+    disabled={props.disabled}
+    ref={props.elementRef}
+    onChange={props.onChange}
+  />
+);
 
 export default Input;

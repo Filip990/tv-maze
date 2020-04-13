@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import { createStore, applyMiddleware, combineReducers } from "redux";
 import thunk from "redux-thunk";
 
-import "./App.css";
+import { MainContainer } from "./App.styled";
 import Home from "./pages/Home/Home";
 import Header from "./components/Header/Header";
 import ShowDetails from "./pages/ShowDetails/ShowDetails";
@@ -25,7 +25,7 @@ function App() {
   );
 
   return (
-    <div className="App">
+    <MainContainer>
       <Provider store={store}>
         <Router>
           <Header />
@@ -38,7 +38,7 @@ function App() {
           </Switch>
         </Router>
       </Provider>
-    </div>
+    </MainContainer>
   );
 }
 

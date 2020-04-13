@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
-export const DropdownContainer = styled.div`
+export const Container = styled.div`
   position: sticky;
   top: 10px;
   width: 25%;
   margin: 0 auto 2%;
 `;
 
-export const DropdownButton = styled.button`
+export const Button = styled.button`
   width: -webkit-fill-available;
   background: #2196f3;
   color: white;
@@ -19,7 +19,7 @@ export const DropdownButton = styled.button`
   }
 `;
 
-export const ToggleDropdownButton = styled(DropdownButton)`
+export const ToggleButton = styled(Button)`
   background: #6fb8f3;
   border: none;
   font-size: inherit;
@@ -28,7 +28,7 @@ export const ToggleDropdownButton = styled(DropdownButton)`
   min-width: auto;
 `;
 
-export const DropdownButtonsContainer = styled.div`
+export const ButtonsContainer = styled.div`
   position: absolute;
   background: #f3f3f3;
   display: ${(props) => (props.visible ? "block" : "none")};

@@ -2,16 +2,16 @@ import React from "react";
 
 import { CastContainer, Image, CastLink } from "./Cast.styled";
 
-const CastComponent = (props) => {
-  const cast = Object.values(props);
-
+const Cast = (props) => {
   const uniqActors = Array.from(
     // filter duplicates, API returns duplicates for some reason
-    new Map(cast.map((actor) => [actor.person.id, actor])).values()
+    new Map(
+      Object.values(props.cast).map((actor) => [actor.person.id, actor])
+    ).values()
   );
 
   return (
-    <div>
+    <>
       <h3>Cast:</h3>
       <CastContainer>
         {uniqActors.map((actor) => (
@@ -23,8 +23,8 @@ const CastComponent = (props) => {
           </CastLink>
         ))}
       </CastContainer>
-    </div>
+    </>
   );
 };
 
-export default CastComponent;
+export default Cast;

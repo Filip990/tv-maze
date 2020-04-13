@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import Spinner from "../../components/Spinner/Spinner";
-import CastComponent from "./components/Cast/Cast";
+import Cast from "./components/Cast/Cast";
 import DetailsList from "../../components/DetailsList/DetailsList";
 
 import { Summary, ListContainer } from "./ShowDetails.styled";
@@ -27,7 +27,7 @@ const ShowDetails = (props) => {
   ) : error ? (
     <div> {error.message} </div>
   ) : (
-    <div>
+    <>
       <h1>{details.name}</h1>
       <Link to={`/seasons/${id}`}>Show all seasons &#10148;</Link>
       <ListContainer>
@@ -35,8 +35,8 @@ const ShowDetails = (props) => {
         <DetailsList {...details} />
       </ListContainer>
       <Summary>{details.summary || "No summary provided"}</Summary>
-      {details.cast.length !== 0 && <CastComponent {...details.cast} />}
-    </div>
+      {details.cast.length !== 0 && <Cast cast={details.cast} />}
+    </>
   );
 };
 

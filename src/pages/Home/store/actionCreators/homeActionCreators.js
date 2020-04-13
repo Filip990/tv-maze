@@ -48,6 +48,6 @@ export const searchAllTvShows = (searchTerm) => {
   };
 };
 
-export const setDropdownValue = (value) => {
+export const setGenresFilter = (value) => {
   return { type: SET_DROPDOWN_VALUE, value };
 };
