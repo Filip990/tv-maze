@@ -52,8 +52,10 @@ const Home = () => {
   }, [tvShows, filteredShows, selected]);
 
   useEffect(() => {
-    dispatch(getAllTvShows());
-  }, [dispatch]);
+    if (!showsToDisplay.length) {
+      dispatch(getAllTvShows());
+    }
+  }, [dispatch, showsToDisplay]);
 
   const changeSelectedGenre = (event) => {
     const { value } = event.target;
