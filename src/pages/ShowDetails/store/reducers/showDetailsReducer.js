@@ -8,7 +8,7 @@ import {
   dateHelper,
   stripHtmlFromString,
   genresHandler,
-} from "../../utils/helperFunctions";
+} from "../../../../utils/helperFunctions";
 
 import produce from "immer";
 

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { CastContainer, Image, CastLink } from "./CastComponent.styled";
+import { CastContainer, Image, CastLink } from "./Cast.styled";
 
 const CastComponent = (props) => {
   const cast = Object.values(props);

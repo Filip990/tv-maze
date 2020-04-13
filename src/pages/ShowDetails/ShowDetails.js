@@ -2,14 +2,14 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-import Spinner from "../../Spinner/Spinner";
-import CastComponent from "./CastComponent/CastComponent";
-import DetailsList from "../../DetailsList/DetailsList";
+import Spinner from "../../components/Spinner/Spinner";
+import CastComponent from "./components/Cast/Cast";
+import DetailsList from "../../components/DetailsList/DetailsList";
 
 import { Summary, ListContainer } from "./ShowDetails.styled";
-import placeholderImg from "../../../assets/no_image.jpg";
+import placeholderImg from "../../assets/no_image.jpg";
 
-import { getShowDetails } from "../../../store/actionCreators/showDetailsActionCreators";
+import { getShowDetails } from "./store/actionCreators/showDetailsActionCreators";
 
 const ShowDetails = (props) => {
   const dispatch = useDispatch();

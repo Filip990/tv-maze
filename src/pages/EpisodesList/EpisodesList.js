@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import {
-  dateHelper,
-  stripHtmlFromString,
-} from "../../../utils/helperFunctions";
-import placeholderImg from "../../../assets/no_image.jpg";
+import { dateHelper, stripHtmlFromString } from "../../utils/helperFunctions";
+import placeholderImg from "../../assets/no_image.jpg";
 import { Episodes, EpisodeListItem, Summary } from "./EpisodesList.styled";
 
-import Spinner from "../../Spinner/Spinner";
+import Spinner from "../../components/Spinner/Spinner";
 
 const EpisodesList = () => {
   const { id } = useParams();
