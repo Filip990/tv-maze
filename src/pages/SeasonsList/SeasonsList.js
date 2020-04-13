@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useParams, Link } from "react-router-dom";
 
 import { stripHtmlFromString } from "../../utils/helperFunctions";
+import useFetchRemoteData from "../../utils/useFetchRemoteData";
 
 import placeholderImg from "../../assets/no_image.jpg";
 import {
@@ -15,32 +16,18 @@ import DetailsList from "../../components/DetailsList/DetailsList";
 
 const SeasonsList = () => {
   const { id } = useParams();
-  const [seasons, setSeasons] = useState([]);
-  const [error, setError] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    const getSeasonsList = async (id) => {
-      try {
-        const res = await fetch(`http://api.tvmaze.com/shows/${id}/seasons`);
-        const seasonsList = await res.json();
-        setSeasons(seasonsList);
-        setIsLoading(false);
-      } catch (err) {
-        setError(err.message);
-        setIsLoading(false);
-      }
-    };
-
-    getSeasonsList(id);
-  }, [id]);
+  const { response, error, isLoading } = useFetchRemoteData(
+    `http://api.tvmaze.com/shows/${id}/seasons`
+  );
 
   return (
     <>
       {isLoading ? (
         <Spinner />
       ) : (
-        seasons.map((season) => (
+        response &&
+        response.map((season) => (
           <div key={season.id}>
             <SeasonNumber>Season: {season.number}</SeasonNumber>
 

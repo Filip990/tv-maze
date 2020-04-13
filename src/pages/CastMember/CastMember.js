@@ -1,39 +1,36 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
 
 import { PersonDetails } from "./CastMember.styled";
 
+import Spinner from "../../components/Spinner/Spinner";
+
 import { formatDate } from "../../utils/helperFunctions";
+import useFetchRemoteData from "../../utils/useFetchRemoteData";
 
-const CastMember = (props) => {
+const CastMember = () => {
   const { id } = useParams();
-  const [person, setPerson] = useState({});
-  const [error, setError] = useState("");
 
-  useEffect(() => {
-    const getPersonDetails = async (id) => {
-      try {
-        const res = await fetch(`http://api.tvmaze.com/people/${id}`);
-        const personDetails = await res.json();
-        setPerson(personDetails);
-      } catch (err) {
-        setError(err.message);
-      }
-    };
+  const { response, error, isLoading } = useFetchRemoteData(
+    `http://api.tvmaze.com/people/${id}`
+  );
 
-    getPersonDetails(id);
-  }, [id]);
-
-  return (
-    <PersonDetails>
-      <img src={person.image?.medium} alt="" />
-      <div>
-        <h1>{person.name}</h1>
-        {person.birthday && <p> Birthday: {formatDate(person.birthday)}</p>}
-        {person.country && <p> Country: {person.country.name}</p>}
-      </div>
-      {error && <div>{error}</div>}
-    </PersonDetails>
+  return isLoading ? (
+    <Spinner />
+  ) : (
+    response && (
+      <PersonDetails>
+        <img src={response.image?.medium} alt="" />
+        <div>
+          <h1>{response.name}</h1>
+          {response.birthday && (
+            <p> Birthday: {formatDate(response.birthday)}</p>
+          )}
+          {response.country && <p> Country: {response.country.name}</p>}
+        </div>
+        {error && <div>{error}</div>}
+      </PersonDetails>
+    )
   );
 };
 
