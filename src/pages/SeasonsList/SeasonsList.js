@@ -10,8 +10,8 @@ import {
   SeasonNumber,
 } from "./SeasonsList.styled";
 
-import Spinner from "../Spinner/Spinner";
-import DetailsList from "../DetailsList/DetailsList";
+import Spinner from "../../components/Spinner/Spinner";
+import DetailsList from "../../components/DetailsList/DetailsList";
 
 const SeasonsList = () => {
   const { id } = useParams();

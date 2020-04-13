@@ -1,14 +1,14 @@
 import React from "react";
 
-import placeholderImg from "../../../assets/no_image.jpg";
+import placeholderImg from "../../../../assets/no_image.jpg";
 import {
   TvShowLink,
   DetailsWrapper,
   ShowTitle,
   Image,
-} from "./TvShowCardComponent.styled";
+} from "./TvShowCard.styled";
 
-import { genresHandler } from "../../../utils/helperFunctions";
+import { genresHandler } from "../../../../utils/helperFunctions";
 
 const TvShowCard = (props) => {
   return (

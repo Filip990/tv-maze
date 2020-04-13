@@ -2,13 +2,11 @@ import {
   GET_ALL_TV_SHOWS_SUCCESS,
   GET_ALL_TV_SHOWS_FAILURE,
   GET_ALL_TV_SHOWS_REQUEST,
-  SET_DROPDOWN_VALUE,
-} from "../actions/homeActionTypes";
-import {
   SEARCH_TV_SHOWS_SUCCESS,
   SEARCH_TV_SHOWS_FAILURE,
   SEARCH_TV_SHOWS_REQUEST,
-} from "../actions/searchActionTypes";
+  SET_DROPDOWN_VALUE,
+} from "../actions/homeActionTypes";
 
 import produce from "immer";
 

@@ -1,16 +1,23 @@
+// pay attention to naming
+// create pages folder for each page (see routes), and in each page folder create
+// a components folder, store, utils and constants relevant to that page
+// create custom hook (put in utils folder)
+// no need for wrapping divs, use fragments <></> instead
+// remove return statements created from the snippet by default
+
 import React, { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import TvShowCard from "./TvShowCardComponent/TvShowCard";
-import Spinner from "../Spinner/Spinner";
-import Dropdown from "../Dropdown/Dropdown";
+import TvShowCard from "./components/TvShowCardComponent/TvShowCard";
+import Spinner from "../../components/Spinner/Spinner";
+import Dropdown from "../../components/Dropdown/Dropdown";
 
-import { MainContainer } from "./HomeComponent.styled";
+import { MainContainer } from "./Home.styled";
 
 import {
   getAllTvShows,
   setDropdownValue,
-} from "../../store/actionCreators/homeActionCreator";
+} from "./store/actionCreators/homeActionCreators";
 
 const dropdownOptions = [
   // TODO: remove into separate file

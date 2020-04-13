@@ -5,15 +5,15 @@ import { createStore, applyMiddleware, combineReducers } from "redux";
 import thunk from "redux-thunk";
 
 import "./App.css";
-import Home from "./components/HomeComponent/HomeComponent";
+import Home from "./pages/Home/Home";
 import Header from "./components/Header/Header";
-import ShowDetails from "./components/HomeComponent/ShowDetails/ShowDetails";
-import CastMember from "./components/HomeComponent/ShowDetails/CastComponent/CastMember/CastMember";
-import SeasonsList from "./components/SeasonsList/SeasonsList";
-import EpisodesList from "./components/SeasonsList/EpisodesList/EpisodesList";
+import ShowDetails from "./pages/ShowDetails/ShowDetails";
+import CastMember from "./pages/CastMember/CastMember";
+import SeasonsList from "./pages/SeasonsList/SeasonsList";
+import EpisodesList from "./pages/EpisodesList/EpisodesList";
 
-import tvShowsReducer from "./store/reducers/tvShowsReducer";
-import showDetailsReducer from "./store/reducers/showDetailsReducer";
+import tvShowsReducer from "./pages/Home/store/reducers/tvShowsReducer";
+import showDetailsReducer from "./pages/ShowDetails/store/reducers/showDetailsReducer";
 
 function App() {
   const store = createStore(

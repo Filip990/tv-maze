@@ -4,7 +4,7 @@ import { debounce } from "lodash";
 
 import { StyledHeader, HeaderInput, Title, HeaderLink } from "./Header.styled";
 
-import { searchAllTvShows } from "../../store/actionCreators/searchActionCreator";
+import { searchAllTvShows } from "../../pages/Home/store/actionCreators/homeActionCreators";
 import { useLocation } from "react-router-dom";
 
 const Header = () => {
