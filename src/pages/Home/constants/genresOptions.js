@@ -10,4 +10,9 @@ export const genresOptions = [
   { value: "crime", label: "Crime" },
   { value: "adventure", label: "Adventure" },
   { value: "mystery", label: "Mystery" },
+  { value: "family", label: "Family" },
+  { value: "supernatural", label: "Supernatural" },
+  { value: "anime", label: "Anime" },
+  { value: "fantasy", label: "Fantasy" },
+  { value: "history", label: "History" },
 ];
