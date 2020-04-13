@@ -42,7 +42,7 @@ const EpisodesList = () => {
               <div>
                 <h3> {episode.name}</h3>
                 <p>Official Air Date: {dateHelper(episode.airdate)}</p>
-                <p>Runtime: {episode.runtime}</p>
+                <p>Runtime: {episode.runtime} minutes</p>
                 <img src={episode.image?.medium || placeholderImg} alt="" />
               </div>
               <Summary>
