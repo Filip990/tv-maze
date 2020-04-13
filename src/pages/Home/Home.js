@@ -16,7 +16,7 @@ import { MainContainer } from "./Home.styled";
 
 import {
   getAllTvShows,
-  setDropdownValue,
+  setGenresFilter,
 } from "./store/actionCreators/homeActionCreators";
 
 const dropdownOptions = [
@@ -40,19 +40,16 @@ const Home = () => {
     (state) => state.allShows
   );
 
-  const selectedOpt = selected;
-
   const showsToDisplay = useMemo(() => {
     const filtered = (!filteredShows.length ? tvShows : filteredShows).filter(
-      (show) => {
-        return selectedOpt !== "all shows" // default
-          ? show.genres?.join(",").toLowerCase().indexOf(selectedOpt) > -1
-          : show;
-      }
+      (show) =>
+        selected !== "all shows" // default
+          ? show.genres?.join(",").toLowerCase().indexOf(selected) > -1
+          : show
     );
 
     return filtered;
-  }, [tvShows, filteredShows, selectedOpt]);
+  }, [tvShows, filteredShows, selected]);
 
   useEffect(() => {
     dispatch(getAllTvShows());
@@ -60,7 +57,7 @@ const Home = () => {
 
   const changeSelectedGenre = (event) => {
     const { value } = event.target;
-    dispatch(setDropdownValue(value));
+    dispatch(setGenresFilter(value));
     resetScrollPosition();
   };
 
@@ -74,10 +71,10 @@ const Home = () => {
   };
 
   return (
-    <div>
+    <>
       <Dropdown
         options={dropdownOptions}
-        label={`Filter: ${selectedOpt}`}
+        label={`Filter: ${selected}`}
         selected={selected}
         onChange={changeSelectedGenre}
       />
@@ -89,7 +86,7 @@ const Home = () => {
         )}
         {error && <div> {error.message} </div>}
       </MainContainer>
-    </div>
+    </>
   );
 };
 

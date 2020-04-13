@@ -36,7 +36,7 @@ const SeasonsList = () => {
   }, [id]);
 
   return (
-    <div>
+    <>
       {isLoading ? (
         <Spinner />
       ) : (
@@ -56,7 +56,7 @@ const SeasonsList = () => {
         ))
       )}
       {error && <span>{error}</span>}
-    </div>
+    </>
   );
 };
 

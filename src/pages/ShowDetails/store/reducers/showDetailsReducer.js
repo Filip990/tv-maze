@@ -5,9 +5,8 @@ import {
 } from "../actions/showDetailsActionTypes";
 
 import {
-  dateHelper,
+  formatDate,
   stripHtmlFromString,
-  genresHandler,
 } from "../../../../utils/helperFunctions";
 
 import produce from "immer";
@@ -42,8 +41,8 @@ const showDetailsReducer = (state = initialState, action) => {
         draft.details = {
           name: action.details.name,
           language: action.details.language,
-          year: dateHelper(action.details.premiered),
-          genres: genresHandler(action.details.genres),
+          year: formatDate(action.details.premiered),
+          genres: action.details.genres.join(", "),
           status: action.details.status,
           runtime: action.details?.runtime,
           rating: action.details.rating?.average,

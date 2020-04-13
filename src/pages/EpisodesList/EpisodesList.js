@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { dateHelper, stripHtmlFromString } from "../../utils/helperFunctions";
+import { formatDate, stripHtmlFromString } from "../../utils/helperFunctions";
 import placeholderImg from "../../assets/no_image.jpg";
 import { Episodes, EpisodeListItem, Summary } from "./EpisodesList.styled";
 
@@ -29,7 +29,7 @@ const EpisodesList = () => {
   }, [id]);
 
   return (
-    <div>
+    <>
       {isLoading ? (
         <Spinner />
       ) : (
@@ -38,7 +38,7 @@ const EpisodesList = () => {
             <EpisodeListItem key={episode.id}>
               <div>
                 <h3> {episode.name}</h3>
-                <p>Official Air Date: {dateHelper(episode.airdate)}</p>
+                <p>Official Air Date: {formatDate(episode.airdate)}</p>
                 <p>Runtime: {episode.runtime} minutes</p>
                 <img src={episode.image?.medium || placeholderImg} alt="" />
               </div>
@@ -50,7 +50,7 @@ const EpisodesList = () => {
         </Episodes>
       )}
       {error && <span>{error}</span>}
-    </div>
+    </>
   );
 };
 

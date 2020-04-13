@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
 import {
-  DropdownContainer,
-  DropdownButtonsContainer,
-  ToggleDropdownButton,
-  DropdownButton,
+  Container,
+  ButtonsContainer,
+  ToggleButton,
+  Button,
 } from "./Dropdown.styled";
 
 const Dropdown = (props) => {
@@ -15,22 +15,20 @@ const Dropdown = (props) => {
   };
 
   return (
-    <DropdownContainer>
-      <ToggleDropdownButton onClick={toggleDropdown}>
-        {props.label}
-      </ToggleDropdownButton>
-      <DropdownButtonsContainer visible={visible} onClick={toggleDropdown}>
+    <Container>
+      <ToggleButton onClick={toggleDropdown}>{props.label}</ToggleButton>
+      <ButtonsContainer visible={visible} onClick={toggleDropdown}>
         {props.options.map((option) => (
-          <DropdownButton
+          <Button
             key={option.value}
             value={option.value}
             onClick={props.onChange}
           >
             {option.label}
-          </DropdownButton>
+          </Button>
         ))}
-      </DropdownButtonsContainer>
-    </DropdownContainer>
+      </ButtonsContainer>
+    </Container>
   );
 };
 

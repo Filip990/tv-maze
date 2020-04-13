@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 
 import { PersonDetails } from "./CastMember.styled";
 
-import { dateHelper } from "../../utils/helperFunctions";
+import { formatDate } from "../../utils/helperFunctions";
 
 const CastMember = (props) => {
   const { id } = useParams();
@@ -29,7 +29,7 @@ const CastMember = (props) => {
       <img src={person.image?.medium} alt="" />
       <div>
         <h1>{person.name}</h1>
-        {person.birthday && <p> Birthday: {dateHelper(person.birthday)}</p>}
+        {person.birthday && <p> Birthday: {formatDate(person.birthday)}</p>}
         {person.country && <p> Country: {person.country.name}</p>}
       </div>
       {error && <div>{error}</div>}

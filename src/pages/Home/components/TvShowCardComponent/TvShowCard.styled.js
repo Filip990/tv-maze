@@ -23,7 +23,7 @@ export const Image = styled.img`
   height: 210px;
 `;
 
-export const DetailsWrapper = styled.div`
+export const Details = styled.div`
   display: flex;
   justify-content: space-between;
   font-size: 12px;

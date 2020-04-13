@@ -10,35 +10,34 @@ import { useLocation } from "react-router-dom";
 const Header = () => {
   const dispatch = useDispatch();
   const { pathname } = useLocation();
-  const disabled = pathname !== "/";
   const [inputValue, setInputValue] = useState("");
   const inputEl = useRef(null);
 
   useEffect(() => inputEl.current.focus(), []); // focus input on initial render
 
-  const debouncedFn = debounce((val) => {
+  const delaySearchApiCall = debounce((val) => {
     dispatch(searchAllTvShows(val));
   }, 500);
 
-  const search = (event) => {
+  const handleSearch = (event) => {
     const { value } = event.target;
     setInputValue(value);
-    debouncedFn(value);
+    delaySearchApiCall(value);
   };
 
   return (
     <StyledHeader>
       <div>
         <Title>TvMaze</Title>
-        <HeaderLink exact to="/" activeClassName="active">
+        <HeaderLink exact to="/">
           Home
         </HeaderLink>
       </div>
       <HeaderInput
         type="search"
-        onChange={search}
+        onChange={handleSearch}
         placeholder="Search All TV Shows"
-        disabled={disabled}
+        disabled={pathname !== "/"}
         value={inputValue}
         elementRef={inputEl}
       />
