@@ -1,10 +1,3 @@
-// pay attention to naming
-// create pages folder for each page (see routes), and in each page folder create
-// a components folder, store, utils and constants relevant to that page
-// create custom hook (put in utils folder)
-// no need for wrapping divs, use fragments <></> instead
-// remove return statements created from the snippet by default
-
 import React, { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -18,21 +11,7 @@ import {
   getAllTvShows,
   setGenresFilter,
 } from "./store/actionCreators/homeActionCreators";
-
-const dropdownOptions = [
-  // TODO: remove into separate file
-  { value: "all shows", label: "All Shows" },
-  { value: "drama", label: "Drama" },
-  { value: "horror", label: "Horror" },
-  { value: "comedy", label: "Comedy" },
-  { value: "science-fiction", label: "Science-Fiction" },
-  { value: "romance", label: "Romance" },
-  { value: "thriller", label: "Thriller" },
-  { value: "action", label: "Action" },
-  { value: "crime", label: "Crime" },
-  { value: "adventure", label: "Adventure" },
-  { value: "mystery", label: "Mystery" },
-];
+import { genresOptions } from "./constants/genresOptions";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -43,7 +22,7 @@ const Home = () => {
   const showsToDisplay = useMemo(() => {
     const filtered = (!filteredShows.length ? tvShows : filteredShows).filter(
       (show) =>
-        selected !== "all shows" // default
+        selected !== genresOptions[0].value // default
           ? show.genres?.join(",").toLowerCase().indexOf(selected) > -1
           : show
     );
@@ -75,7 +54,7 @@ const Home = () => {
   return (
     <>
       <Dropdown
-        options={dropdownOptions}
+        options={genresOptions}
         label={`Filter: ${selected}`}
         selected={selected}
         onChange={changeSelectedGenre}
