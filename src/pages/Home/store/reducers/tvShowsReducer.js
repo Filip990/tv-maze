@@ -8,13 +8,15 @@ import {
   SET_DROPDOWN_VALUE,
 } from "../actions/homeActionTypes";
 
+import { genresOptions } from "../../constants/genresOptions";
+
 import produce from "immer";
 
 const initialState = {
   tvShows: [],
   filteredShows: [],
   isFetching: false,
-  selected: "all shows",
+  selected: genresOptions[0].value,
   error: null,
 };
 
