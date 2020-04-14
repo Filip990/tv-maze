@@ -1,4 +1,4 @@
-import React from "react";
+/* import React from "react";
 
 import { StyledPagination, ActiveButton } from "./Pagination.styled";
 import usePagination from "../../utils/usePagination";
@@ -44,3 +44,4 @@ const Pagination = (props) => {
 };
 
 export default Pagination;
+ */
