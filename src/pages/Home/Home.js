@@ -10,6 +10,7 @@ import { MainContainer, StyledPagination, ActiveButton } from "./Home.styled";
 import {
   getAllTvShows,
   setGenresFilter,
+  changePaginationIndex,
 } from "./store/actionCreators/homeActionCreators";
 import { genresOptions } from "./constants/genresOptions";
 import { resetScrollPosition } from "../../utils/helperFunctions";
@@ -17,9 +18,14 @@ import usePagination from "../../utils/usePagination";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const { tvShows, filteredShows, isFetching, selected, error } = useSelector(
-    (state) => state.allShows
-  );
+  const {
+    tvShows,
+    filteredShows,
+    isFetching,
+    selected,
+    currentPageIndex,
+    error,
+  } = useSelector((state) => state.allShows);
 
   const showsToDisplay = useMemo(() => {
     const filtered = (!filteredShows.length ? tvShows : filteredShows).filter(
@@ -39,7 +45,7 @@ const Home = () => {
     currentData,
     currentPage,
     maxPage,
-  } = usePagination(showsToDisplay, 50);
+  } = usePagination(showsToDisplay, 50, currentPageIndex);
 
   useEffect(() => {
     if (!showsToDisplay.length) {
@@ -51,11 +57,13 @@ const Home = () => {
     const { value } = event.target;
     dispatch(setGenresFilter(value));
     resetScrollPosition();
+    jump(1);
   };
 
   const jumpToPage = (event) => {
     const { id } = event.target;
     jump(id);
+    dispatch(changePaginationIndex(+id));
   };
 
   return (
@@ -66,15 +74,6 @@ const Home = () => {
         selected={selected}
         onChange={changeSelectedGenre}
       />
-
-      <MainContainer>
-        {isFetching ? (
-          <Spinner />
-        ) : (
-          currentData().map((show) => <TvShowCard key={show.id} {...show} />)
-        )}
-        {error && <div> {error.message} </div>}
-      </MainContainer>
       <StyledPagination>
         {currentPage !== 1 && (
           <>
@@ -88,14 +87,23 @@ const Home = () => {
           </>
         )}
         <ActiveButton>{currentPage}</ActiveButton>
-        <button id={currentPage + 1} onClick={jumpToPage}>
-          {currentPage + 1}
-        </button>
-        <button onClick={next}>next</button>
-        <button id={maxPage} onClick={jumpToPage}>
-          last
-        </button>
+        {currentPage !== maxPage && (
+          <>
+            <button id={currentPage + 1} onClick={jumpToPage}>
+              {currentPage + 1}
+            </button>
+            <button onClick={next}>next</button>
+          </>
+        )}
       </StyledPagination>
+      <MainContainer>
+        {isFetching ? (
+          <Spinner />
+        ) : (
+          currentData().map((show) => <TvShowCard key={show.id} {...show} />)
+        )}
+        {error && <div> {error.message} </div>}
+      </MainContainer>
     </>
   );
 };

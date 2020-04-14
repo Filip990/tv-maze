@@ -6,6 +6,7 @@ import {
   SEARCH_TV_SHOWS_FAILURE,
   SEARCH_TV_SHOWS_REQUEST,
   SET_DROPDOWN_VALUE,
+  SET_PAGINATION,
 } from "../actions/homeActionTypes";
 
 import { genresOptions } from "../../constants/genresOptions";
@@ -17,6 +18,7 @@ const initialState = {
   filteredShows: [],
   isFetching: false,
   selected: genresOptions[0].value,
+  currentPageIndex: 1,
   error: null,
 };
 
@@ -57,6 +59,10 @@ const tvShowsReducer = (state = initialState, action) => {
 
       case SET_DROPDOWN_VALUE:
         draft.selected = action.value;
+        break;
+
+      case SET_PAGINATION:
+        draft.currentPageIndex = action.index;
         break;
 
       default:

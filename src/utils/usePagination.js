@@ -2,8 +2,8 @@ import { useState } from "react";
 
 import { resetScrollPosition } from "../utils/helperFunctions";
 
-const usePagination = (data, itemsPerPage) => {
-  const [currentPage, setCurrentPage] = useState(1);
+const usePagination = (data, itemsPerPage, currentPageIndex) => {
+  const [currentPage, setCurrentPage] = useState(currentPageIndex);
   const maxPage = Math.ceil(data.length / itemsPerPage);
 
   const currentData = () => {

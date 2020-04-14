@@ -12,6 +12,6 @@ export const StyledPagination = styled.ul`
 `;
 
 export const ActiveButton = styled.button`
-  background: blue;
+  background: #2196f3;
   color: white;
 `;
