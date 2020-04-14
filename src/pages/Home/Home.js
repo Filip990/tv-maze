@@ -5,13 +5,16 @@ import TvShowCard from "./components/TvShowCardComponent/TvShowCard";
 import Spinner from "../../components/Spinner/Spinner";
 import Dropdown from "../../components/Dropdown/Dropdown";
 
-import { MainContainer } from "./Home.styled";
+import { MainContainer, Pagination } from "./Home.styled";
 
 import {
   getAllTvShows,
   setGenresFilter,
 } from "./store/actionCreators/homeActionCreators";
 import { genresOptions } from "./constants/genresOptions";
+import { resetScrollPosition } from "../../utils/helperFunctions";
+
+import usePagination from "../../utils/usePagination";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -30,6 +33,15 @@ const Home = () => {
     return filtered;
   }, [tvShows, filteredShows, selected]);
 
+  const {
+    next,
+    previous,
+    jump,
+    currentData,
+    currentPage,
+    maxPage,
+  } = usePagination(showsToDisplay, 50);
+
   useEffect(() => {
     if (!showsToDisplay.length) {
       dispatch(getAllTvShows());
@@ -40,15 +52,12 @@ const Home = () => {
     const { value } = event.target;
     dispatch(setGenresFilter(value));
     resetScrollPosition();
+    jump(1); // return pagination to first page
   };
 
-  const resetScrollPosition = () => {
-    if (window.scrollY !== 0) {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-    }
+  const jumpToPage = (event) => {
+    const { id } = event.target;
+    jump(id);
   };
 
   return (
@@ -59,11 +68,32 @@ const Home = () => {
         selected={selected}
         onChange={changeSelectedGenre}
       />
+      <Pagination>
+        {currentPage !== 1 && (
+          <>
+            <button id="1" onClick={jumpToPage}>
+              first
+            </button>
+            <button onClick={previous}>previous</button>
+            <button id={currentPage - 1} onClick={jumpToPage}>
+              {currentPage - 1}
+            </button>
+          </>
+        )}
+        <button>{currentPage}</button>
+        <button id={currentPage + 1} onClick={jumpToPage}>
+          {currentPage + 1}
+        </button>
+        <button onClick={next}>next</button>
+        <button id={maxPage} onClick={jumpToPage}>
+          last
+        </button>
+      </Pagination>
       <MainContainer>
         {isFetching ? (
           <Spinner />
         ) : (
-          showsToDisplay.map((show) => <TvShowCard key={show.id} {...show} />)
+          currentData().map((show) => <TvShowCard key={show.id} {...show} />)
         )}
         {error && <div> {error.message} </div>}
       </MainContainer>
