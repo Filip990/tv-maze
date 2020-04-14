@@ -6,8 +6,12 @@ export const MainContainer = styled.div`
   padding: 0 2%;
 `;
 
-export const Pagination = styled.ul`
+export const StyledPagination = styled.ul`
   list-style: none;
-  display: flex;
-  justify-content: space-evenly;
+  display: block;
+`;
+
+export const ActiveButton = styled.button`
+  background: blue;
+  color: white;
 `;

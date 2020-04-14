@@ -5,7 +5,7 @@ import TvShowCard from "./components/TvShowCardComponent/TvShowCard";
 import Spinner from "../../components/Spinner/Spinner";
 import Dropdown from "../../components/Dropdown/Dropdown";
 
-import { MainContainer, Pagination } from "./Home.styled";
+import { MainContainer, StyledPagination, ActiveButton } from "./Home.styled";
 
 import {
   getAllTvShows,
@@ -13,7 +13,6 @@ import {
 } from "./store/actionCreators/homeActionCreators";
 import { genresOptions } from "./constants/genresOptions";
 import { resetScrollPosition } from "../../utils/helperFunctions";
-
 import usePagination from "../../utils/usePagination";
 
 const Home = () => {
@@ -52,7 +51,6 @@ const Home = () => {
     const { value } = event.target;
     dispatch(setGenresFilter(value));
     resetScrollPosition();
-    jump(1); // return pagination to first page
   };
 
   const jumpToPage = (event) => {
@@ -68,7 +66,16 @@ const Home = () => {
         selected={selected}
         onChange={changeSelectedGenre}
       />
-      <Pagination>
+
+      <MainContainer>
+        {isFetching ? (
+          <Spinner />
+        ) : (
+          currentData().map((show) => <TvShowCard key={show.id} {...show} />)
+        )}
+        {error && <div> {error.message} </div>}
+      </MainContainer>
+      <StyledPagination>
         {currentPage !== 1 && (
           <>
             <button id="1" onClick={jumpToPage}>
@@ -80,7 +87,7 @@ const Home = () => {
             </button>
           </>
         )}
-        <button>{currentPage}</button>
+        <ActiveButton>{currentPage}</ActiveButton>
         <button id={currentPage + 1} onClick={jumpToPage}>
           {currentPage + 1}
         </button>
@@ -88,15 +95,7 @@ const Home = () => {
         <button id={maxPage} onClick={jumpToPage}>
           last
         </button>
-      </Pagination>
-      <MainContainer>
-        {isFetching ? (
-          <Spinner />
-        ) : (
-          currentData().map((show) => <TvShowCard key={show.id} {...show} />)
-        )}
-        {error && <div> {error.message} </div>}
-      </MainContainer>
+      </StyledPagination>
     </>
   );
 };
