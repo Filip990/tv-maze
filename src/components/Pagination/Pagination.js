@@ -25,7 +25,7 @@ const Pagination = () => {
 
   return (
     <StyledPagination>
-      {currentPageIndex && currentPageIndex !== 1 && (
+      {currentPageIndex !== 1 && (
         <>
           <button id="1" onClick={jumpToPage}>
             first
@@ -36,10 +36,13 @@ const Pagination = () => {
           </button>
         </>
       )}
-      {currentPageIndex && <ActiveButton>{currentPageIndex}</ActiveButton>}
+      <ActiveButton>{currentPageIndex}</ActiveButton>
       <>
         <button id={currentPageIndex + 1} onClick={jumpToPage}>
           {currentPageIndex + 1}
+        </button>
+        <button id={currentPageIndex + 2} onClick={jumpToPage}>
+          {currentPageIndex + 2}
         </button>
         <button onClick={next}>next</button>
       </>

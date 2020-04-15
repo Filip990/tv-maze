@@ -38,9 +38,20 @@ const Home = () => {
     return filtered;
   }, [tvShows, filteredShows, selected]);
 
+  const paginateFrom = (currentPageIndex - 1) * itemsPerPage + 1;
+  const paginateTo = paginateFrom + itemsPerPage - 1;
+  const paginatedShows = showsToDisplay.slice(paginateFrom, paginateTo);
+
   useEffect(() => {
-    dispatch(getAllTvShows(currentPageIndex));
-  }, [dispatch, currentPageIndex]);
+    const shouldLoadMoreShows =
+      (currentPageIndex + 1) * itemsPerPage >= tvShows.length;
+
+    if (shouldLoadMoreShows) {
+      const pageIndex =
+        Math.ceil(tvShows.length / ((currentPageIndex - 1) * itemsPerPage)) + 1;
+      dispatch(getAllTvShows(pageIndex));
+    }
+  }, [dispatch, itemsPerPage, currentPageIndex, tvShows]);
 
   const changeSelectedGenre = (event) => {
     const { value } = event.target;
@@ -61,7 +72,7 @@ const Home = () => {
         {isFetching ? (
           <Spinner />
         ) : (
-          showsToDisplay.map((show) => <TvShowCard key={show.id} {...show} />)
+          paginatedShows.map((show) => <TvShowCard key={show.id} {...show} />)
         )}
         {error && <div> {error.message} </div>}
       </MainContainer>
