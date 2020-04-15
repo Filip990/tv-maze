@@ -11,7 +11,6 @@ import { MainContainer } from "./Home.styled";
 import {
   getAllTvShows,
   setGenresFilter,
-  changePaginationIndex,
 } from "./store/actionCreators/homeActionCreators";
 import { genresOptions } from "./constants/genresOptions";
 import { resetScrollPosition } from "../../utils/helperFunctions";
@@ -49,11 +48,6 @@ const Home = () => {
     resetScrollPosition();
   };
 
-  const jumpToPage = (event) => {
-    const { id } = event.target;
-    dispatch(changePaginationIndex(+id));
-  };
-
   return (
     <>
       <Dropdown
@@ -62,12 +56,7 @@ const Home = () => {
         selected={selected}
         onChange={changeSelectedGenre}
       />
-      <Pagination
-        data={showsToDisplay}
-        items={itemsPerPage}
-        page={currentPageIndex}
-        onClick={jumpToPage}
-      />
+      <Pagination />
       <MainContainer>
         {isFetching ? (
           <Spinner />
