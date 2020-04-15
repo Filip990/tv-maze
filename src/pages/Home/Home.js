@@ -4,8 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import TvShowCard from "./components/TvShowCardComponent/TvShowCard";
 import Spinner from "../../components/Spinner/Spinner";
 import Dropdown from "../../components/Dropdown/Dropdown";
+import Pagination from "../../components/Pagination/Pagination";
 
-import { MainContainer, StyledPagination, ActiveButton } from "./Home.styled";
+import { MainContainer } from "./Home.styled";
 
 import {
   getAllTvShows,
@@ -14,7 +15,6 @@ import {
 } from "./store/actionCreators/homeActionCreators";
 import { genresOptions } from "./constants/genresOptions";
 import { resetScrollPosition } from "../../utils/helperFunctions";
-import usePagination from "../../utils/usePagination";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -24,6 +24,7 @@ const Home = () => {
     isFetching,
     selected,
     currentPageIndex,
+    itemsPerPage,
     error,
   } = useSelector((state) => state.allShows);
 
@@ -38,31 +39,18 @@ const Home = () => {
     return filtered;
   }, [tvShows, filteredShows, selected]);
 
-  const {
-    next,
-    previous,
-    jump,
-    currentData,
-    currentPage,
-    maxPage,
-  } = usePagination(showsToDisplay, 50, currentPageIndex);
-
   useEffect(() => {
-    if (!showsToDisplay.length) {
-      dispatch(getAllTvShows());
-    }
-  }, [dispatch, showsToDisplay]);
+    dispatch(getAllTvShows(currentPageIndex));
+  }, [dispatch, currentPageIndex]);
 
   const changeSelectedGenre = (event) => {
     const { value } = event.target;
     dispatch(setGenresFilter(value));
     resetScrollPosition();
-    jump(1);
   };
 
   const jumpToPage = (event) => {
     const { id } = event.target;
-    jump(id);
     dispatch(changePaginationIndex(+id));
   };
 
@@ -74,33 +62,17 @@ const Home = () => {
         selected={selected}
         onChange={changeSelectedGenre}
       />
-      <StyledPagination>
-        {currentPage !== 1 && (
-          <>
-            <button id="1" onClick={jumpToPage}>
-              first
-            </button>
-            <button onClick={previous}>previous</button>
-            <button id={currentPage - 1} onClick={jumpToPage}>
-              {currentPage - 1}
-            </button>
-          </>
-        )}
-        <ActiveButton>{currentPage}</ActiveButton>
-        {currentPage !== maxPage && (
-          <>
-            <button id={currentPage + 1} onClick={jumpToPage}>
-              {currentPage + 1}
-            </button>
-            <button onClick={next}>next</button>
-          </>
-        )}
-      </StyledPagination>
+      <Pagination
+        data={showsToDisplay}
+        items={itemsPerPage}
+        page={currentPageIndex}
+        onClick={jumpToPage}
+      />
       <MainContainer>
         {isFetching ? (
           <Spinner />
         ) : (
-          currentData().map((show) => <TvShowCard key={show.id} {...show} />)
+          showsToDisplay.map((show) => <TvShowCard key={show.id} {...show} />)
         )}
         {error && <div> {error.message} </div>}
       </MainContainer>

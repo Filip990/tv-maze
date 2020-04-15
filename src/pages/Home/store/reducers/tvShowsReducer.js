@@ -19,6 +19,7 @@ const initialState = {
   isFetching: false,
   selected: genresOptions[0].value,
   currentPageIndex: 1,
+  itemsPerPage: 50,
   error: null,
 };
 

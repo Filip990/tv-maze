@@ -1,17 +1,22 @@
-/* import React from "react";
+import React, { useState } from "react";
 
 import { StyledPagination, ActiveButton } from "./Pagination.styled";
-import usePagination from "../../utils/usePagination";
 
 const Pagination = (props) => {
-  const {
-    next,
-    previous,
-    jump,
-    currentData,
-    currentPage,
-    maxPage,
-  } = usePagination(props.data, 50);
+  const [currentPage, setCurrentPage] = useState(props.page);
+
+  const next = () => {
+    setCurrentPage(currentPage + 1);
+  };
+
+  const previous = () => {
+    setCurrentPage((currentPage) => Math.max(currentPage - 1, 1));
+  };
+
+  const jump = (page) => {
+    const pageNumber = Math.max(1, page);
+    setCurrentPage(pageNumber);
+  };
 
   const jumpToPage = (event) => {
     const { id } = event.target;
@@ -20,7 +25,7 @@ const Pagination = (props) => {
 
   return (
     <StyledPagination>
-      {currentPage !== 1 && (
+      {currentPage && currentPage !== 1 && (
         <>
           <button id="1" onClick={jumpToPage}>
             first
@@ -31,17 +36,15 @@ const Pagination = (props) => {
           </button>
         </>
       )}
-      <ActiveButton>{currentPage}</ActiveButton>
-      <button id={currentPage + 1} onClick={jumpToPage}>
-        {currentPage + 1}
-      </button>
-      <button onClick={next}>next</button>
-      <button id={maxPage} onClick={jumpToPage}>
-        last
-      </button>
+      {currentPage && <ActiveButton>{currentPage}</ActiveButton>}
+      <>
+        <button id={currentPage + 1} onClick={props.onClick}>
+          {currentPage + 1}
+        </button>
+        <button onClick={next}>next</button>
+      </>
     </StyledPagination>
   );
 };
 
 export default Pagination;
- */
