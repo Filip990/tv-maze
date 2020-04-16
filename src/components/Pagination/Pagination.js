@@ -4,7 +4,7 @@ import { StyledPagination, ActiveButton } from "./Pagination.styled";
 import { useDispatch, useSelector } from "react-redux";
 import { changePaginationIndex } from "../../pages/Home/store/actionCreators/homeActionCreators";
 
-const Pagination = () => {
+const Pagination = (props) => {
   const dispatch = useDispatch();
   const { currentPageIndex } = useSelector((state) => state.allShows);
 
@@ -37,15 +37,17 @@ const Pagination = () => {
         </>
       )}
       <ActiveButton>{currentPageIndex}</ActiveButton>
-      <>
-        <button id={currentPageIndex + 1} onClick={jumpToPage}>
-          {currentPageIndex + 1}
-        </button>
-        <button id={currentPageIndex + 2} onClick={jumpToPage}>
-          {currentPageIndex + 2}
-        </button>
-        <button onClick={next}>next</button>
-      </>
+      {!props.isVisible && (
+        <>
+          <button id={currentPageIndex + 1} onClick={jumpToPage}>
+            {currentPageIndex + 1}
+          </button>
+          <button id={currentPageIndex + 2} onClick={jumpToPage}>
+            {currentPageIndex + 2}
+          </button>
+          <button onClick={next}>next</button>
+        </>
+      )}
     </StyledPagination>
   );
 };

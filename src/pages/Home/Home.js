@@ -21,7 +21,7 @@ const Home = () => {
     tvShows, // populated initially
     filteredShows, // populated upon search
     isFetching,
-    selected, // genres dropdow value
+    selected, // genres dropdown value
     currentPageIndex,
     itemsPerPage,
     numberOfApiCallsFired,
@@ -80,7 +80,7 @@ const Home = () => {
         selected={selected}
         onChange={changeSelectedGenre}
       />
-      <Pagination />
+      <Pagination isVisible={showsToDisplay.length < itemsPerPage} />
       <MainContainer>
         {isFetching ? (
           <Spinner />

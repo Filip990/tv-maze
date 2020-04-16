@@ -61,6 +61,7 @@ const tvShowsReducer = (state = initialState, action) => {
 
       case SET_DROPDOWN_VALUE:
         draft.selected = action.value;
+        draft.currentPageIndex = 1;
         break;
 
       case SET_PAGINATION:
