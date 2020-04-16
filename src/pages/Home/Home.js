@@ -15,7 +15,8 @@ import {
 
 import { genresOptions } from "./constants/genresOptions";
 import { resetScrollPosition } from "../../utils/helperFunctions";
-import { displayShows, paginateShows } from "./store/selectors";
+
+import { paginatedShows } from "./store/selectors";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -29,8 +30,7 @@ const Home = () => {
     error,
   } = useSelector((state) => state.allShows);
 
-  const showsToDisplay = useSelector(displayShows);
-  const paginatedShows = useSelector(paginateShows);
+  const shows = useSelector(paginatedShows);
 
   useEffect(() => {
     const shouldLoadMoreShows =
@@ -40,7 +40,7 @@ const Home = () => {
       // numberOfApiCallsFired is incremented in a reducer, starting from 0 (ex. ?page=0, ?page=1 ...)
       // as a way to determine which page from the server should be fetched
       // because we cannot calculate that from the amount of already fetched data, since API
-      // returns incosistent amount of data on every call
+      // returns inconsistent amount of data on every call
       dispatch(getTvShows(numberOfApiCallsFired));
     }
   }, [
@@ -65,12 +65,12 @@ const Home = () => {
         selected={selected}
         onChange={changeSelectedGenre}
       />
-      <Pagination isVisible={showsToDisplay.length < itemsPerPage} />
+      <Pagination isVisible={shows.length < itemsPerPage} />
       <MainContainer>
         {isFetching ? (
           <Spinner />
         ) : (
-          paginatedShows.map((show) => <TvShowCard key={show.id} {...show} />)
+          shows.map((show) => <TvShowCard key={show.id} {...show} />)
         )}
         {error && <div> {error.message} </div>}
       </MainContainer>

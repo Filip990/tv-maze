@@ -7,7 +7,7 @@ const selected = (state) => state.allShows.selected;
 const currentPageIndex = (state) => state.allShows.currentPageIndex;
 const itemsPerPage = (state) => state.allShows.itemsPerPage;
 
-export const displayShows = createSelector(
+const showsToDisplay = createSelector(
   [tvShows, filteredShows, selected],
   (tvShows, filteredShows, selected) => {
     const filtered = (!filteredShows.length
@@ -22,11 +22,11 @@ export const displayShows = createSelector(
   }
 );
 
-export const paginateShows = createSelector(
-  [currentPageIndex, itemsPerPage, displayShows],
-  (currentPageIndex, itemsPerPage, displayShows) => {
+export const paginatedShows = createSelector(
+  [currentPageIndex, itemsPerPage, showsToDisplay],
+  (currentPageIndex, itemsPerPage, showsToDisplay) => {
     const paginateFrom = (currentPageIndex - 1) * itemsPerPage + 1;
-    const paginateTo = paginateFrom + itemsPerPage - 1;
-    return displayShows.slice(paginateFrom, paginateTo);
+    const paginateTo = paginateFrom + itemsPerPage;
+    return showsToDisplay.slice(paginateFrom, paginateTo);
   }
 );
