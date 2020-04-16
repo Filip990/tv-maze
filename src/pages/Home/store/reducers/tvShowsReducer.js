@@ -8,7 +8,7 @@ import {
   SET_DROPDOWN_VALUE,
 } from "../actions/ActionTypes";
 
-import { SET_PAGINATION } from "../../../../components/Pagination/Actions";
+import { SET_PAGINATION } from "../../../../components/Pagination/ActionTypes";
 
 import { genresOptions } from "../../constants/genresOptions";
 
