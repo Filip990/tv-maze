@@ -6,8 +6,9 @@ import {
   SEARCH_TV_SHOWS_FAILURE,
   SEARCH_TV_SHOWS_REQUEST,
   SET_DROPDOWN_VALUE,
-  SET_PAGINATION,
-} from "../actions/homeActionTypes";
+} from "../actions/ActionTypes";
+
+import { SET_PAGINATION } from "../../../../components/Pagination/Actions";
 
 import { genresOptions } from "../../constants/genresOptions";
 
@@ -50,6 +51,7 @@ const tvShowsReducer = (state = initialState, action) => {
       case SEARCH_TV_SHOWS_SUCCESS:
         draft.filteredShows = action.tvShows.map((item) => item.show);
         draft.isFetching = false;
+        draft.currentPageIndex = 1;
         draft.error = null;
         break;
 

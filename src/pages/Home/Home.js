@@ -11,7 +11,7 @@ import { MainContainer } from "./Home.styled";
 import {
   getTvShows,
   setGenresFilter,
-} from "./store/actionCreators/homeActionCreators";
+} from "./store/actionCreators/ActionCreators";
 import { genresOptions } from "./constants/genresOptions";
 import { resetScrollPosition } from "../../utils/helperFunctions";
 

@@ -6,8 +6,7 @@ import {
   SEARCH_TV_SHOWS_SUCCESS,
   SEARCH_TV_SHOWS_FAILURE,
   SET_DROPDOWN_VALUE,
-  SET_PAGINATION,
-} from "../actions/homeActionTypes";
+} from "../actions/ActionTypes";
 
 export const getTvShows = (pageToFetch) => {
   return async (dispatch) => {
@@ -53,8 +52,4 @@ export const searchAllTvShows = (searchTerm) => {
 
 export const setGenresFilter = (value) => {
   return { type: SET_DROPDOWN_VALUE, value };
-};
-
-export const changePaginationIndex = (index) => {
-  return { type: SET_PAGINATION, index };
 };

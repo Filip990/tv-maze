@@ -2,7 +2,7 @@ import React from "react";
 
 import { StyledPagination, ActiveButton } from "./Pagination.styled";
 import { useDispatch, useSelector } from "react-redux";
-import { changePaginationIndex } from "../../pages/Home/store/actionCreators/homeActionCreators";
+import { changePaginationIndex } from "./ActionCreators";
 
 const Pagination = (props) => {
   const dispatch = useDispatch();

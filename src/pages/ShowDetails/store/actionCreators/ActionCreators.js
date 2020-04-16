@@ -2,7 +2,7 @@ import {
   SHOW_DETAILS_REQUEST_START,
   SHOW_DETAILS_REQUEST_SUCCESS,
   SHOW_DETAILS_REQUEST_FAILURE,
-} from "../actions/showDetailsActionTypes";
+} from "../actions/ActionTypes";
 
 export const getShowDetails = (id) => {
   return async (dispatch) => {
