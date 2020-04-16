@@ -6,17 +6,21 @@ import {
   SEARCH_TV_SHOWS_FAILURE,
   SEARCH_TV_SHOWS_REQUEST,
   SET_DROPDOWN_VALUE,
-} from "../actions/homeActionTypes";
+} from "../actions/ActionTypes";
+
+import { SET_PAGINATION } from "../../../../components/Pagination/ActionTypes";
 
 import { genresOptions } from "../../constants/genresOptions";
 
 import produce from "immer";
-
 const initialState = {
   tvShows: [],
   filteredShows: [],
   isFetching: false,
   selected: genresOptions[0].value,
+  currentPageIndex: 1,
+  itemsPerPage: 50,
+  numberOfApiCallsFired: 0,
   error: null,
 };
 
@@ -28,7 +32,8 @@ const tvShowsReducer = (state = initialState, action) => {
         break;
 
       case GET_ALL_TV_SHOWS_SUCCESS:
-        draft.tvShows = action.tvShows;
+        draft.tvShows = [...draft.tvShows, ...action.tvShows];
+        draft.numberOfApiCallsFired = state.numberOfApiCallsFired + 1;
         draft.isFetching = false;
         draft.error = null;
         break;
@@ -46,6 +51,7 @@ const tvShowsReducer = (state = initialState, action) => {
       case SEARCH_TV_SHOWS_SUCCESS:
         draft.filteredShows = action.tvShows.map((item) => item.show);
         draft.isFetching = false;
+        draft.currentPageIndex = 1;
         draft.error = null;
         break;
 
@@ -57,6 +63,11 @@ const tvShowsReducer = (state = initialState, action) => {
 
       case SET_DROPDOWN_VALUE:
         draft.selected = action.value;
+        draft.currentPageIndex = 1;
+        break;
+
+      case SET_PAGINATION:
+        draft.currentPageIndex = action.index;
         break;
 
       default:

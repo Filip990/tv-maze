@@ -9,7 +9,7 @@ import DetailsList from "../../components/DetailsList/DetailsList";
 import { Summary, ListContainer } from "./ShowDetails.styled";
 import placeholderImg from "../../assets/no_image.jpg";
 
-import { getShowDetails } from "./store/actionCreators/showDetailsActionCreators";
+import { getShowDetails } from "./store/actionCreators/ActionCreators";
 
 const ShowDetails = (props) => {
   const dispatch = useDispatch();
