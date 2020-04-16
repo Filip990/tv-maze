@@ -9,7 +9,7 @@ import Pagination from "../../components/Pagination/Pagination";
 import { MainContainer } from "./Home.styled";
 
 import {
-  getAllTvShows,
+  getTvShows,
   setGenresFilter,
 } from "./store/actionCreators/homeActionCreators";
 import { genresOptions } from "./constants/genresOptions";
@@ -18,26 +18,31 @@ import { resetScrollPosition } from "../../utils/helperFunctions";
 const Home = () => {
   const dispatch = useDispatch();
   const {
-    tvShows,
-    filteredShows,
+    tvShows, // populated initially
+    filteredShows, // populated upon search
     isFetching,
-    selected,
+    selected, // genres dropdow value
     currentPageIndex,
     itemsPerPage,
+    numberOfApiCallsFired,
     error,
   } = useSelector((state) => state.allShows);
 
   const showsToDisplay = useMemo(() => {
-    const filtered = (!filteredShows.length ? tvShows : filteredShows).filter(
-      (show) =>
-        selected !== genresOptions[0].value // default
-          ? show.genres?.join(",").toLowerCase().indexOf(selected) > -1
-          : show
+    const filteredByGenre = (!filteredShows.length
+      ? tvShows
+      : filteredShows
+    ).filter((show) =>
+      selected !== genresOptions[0].value // if default 'all shows' is selected,
+        ? // return every show, otherwise filter by selected genre
+          show.genres?.join(",").toLowerCase().indexOf(selected) > -1
+        : show
     );
 
-    return filtered;
+    return filteredByGenre;
   }, [tvShows, filteredShows, selected]);
 
+  // client-side pagination
   const paginateFrom = (currentPageIndex - 1) * itemsPerPage + 1;
   const paginateTo = paginateFrom + itemsPerPage - 1;
   const paginatedShows = showsToDisplay.slice(paginateFrom, paginateTo);
@@ -47,11 +52,19 @@ const Home = () => {
       (currentPageIndex + 1) * itemsPerPage >= tvShows.length;
 
     if (shouldLoadMoreShows) {
-      const pageIndex =
-        Math.ceil(tvShows.length / ((currentPageIndex - 1) * itemsPerPage)) + 1;
-      dispatch(getAllTvShows(pageIndex));
+      // numberOfApiCallsFired is incremented in a reducer, starting from 0 (ex. ?page=0, ?page=1 ...)
+      // as way to determine which page from server should be fetched
+      // because we cannot calculate that from the amount of already fetched data, since API
+      // returns incosistent amount of data on every call
+      dispatch(getTvShows(numberOfApiCallsFired));
     }
-  }, [dispatch, itemsPerPage, currentPageIndex, tvShows]);
+  }, [
+    dispatch,
+    itemsPerPage,
+    currentPageIndex,
+    tvShows,
+    numberOfApiCallsFired,
+  ]);
 
   const changeSelectedGenre = (event) => {
     const { value } = event.target;

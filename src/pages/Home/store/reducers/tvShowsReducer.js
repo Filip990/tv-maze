@@ -12,7 +12,6 @@ import {
 import { genresOptions } from "../../constants/genresOptions";
 
 import produce from "immer";
-// track in reducer how many api calls have been fired
 const initialState = {
   tvShows: [],
   filteredShows: [],
@@ -20,6 +19,7 @@ const initialState = {
   selected: genresOptions[0].value,
   currentPageIndex: 1,
   itemsPerPage: 50,
+  numberOfApiCallsFired: 0,
   error: null,
 };
 
@@ -32,6 +32,7 @@ const tvShowsReducer = (state = initialState, action) => {
 
       case GET_ALL_TV_SHOWS_SUCCESS:
         draft.tvShows = [...draft.tvShows, ...action.tvShows];
+        draft.numberOfApiCallsFired = state.numberOfApiCallsFired + 1;
         draft.isFetching = false;
         draft.error = null;
         break;

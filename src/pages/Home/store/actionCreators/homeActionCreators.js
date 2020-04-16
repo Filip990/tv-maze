@@ -9,11 +9,13 @@ import {
   SET_PAGINATION,
 } from "../actions/homeActionTypes";
 
-export const getAllTvShows = (page) => {
+export const getTvShows = (pageToFetch) => {
   return async (dispatch) => {
     dispatch({ type: GET_ALL_TV_SHOWS_REQUEST });
     try {
-      const res = await fetch(`http://api.tvmaze.com/shows?page=${page}`);
+      const res = await fetch(
+        `http://api.tvmaze.com/shows?page=${pageToFetch}`
+      );
       const tvShows = await res.json();
       dispatch({
         type: GET_ALL_TV_SHOWS_SUCCESS,
